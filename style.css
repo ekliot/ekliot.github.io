@@ -1,6 +1,6 @@
 #Nav {
+  max-width: 235px;
   display: flex;
-  max-width: 140px;
   flex-wrap: wrap;
   flex-direction: row;
 }
@@ -9,13 +9,9 @@ body {
   background-color: black;
 }
 
-.px {
+px {
   min-width: 5px;
   min-height: 5px;
-}
-
-.inv {
-  /*background-color: white;*/
 }
 
 .c1 {
@@ -60,10 +56,6 @@ body {
 
 .c11 {
   background-color: #ffff55;
-}
-
-.rune:hover {
-  /**/
 }
 
 .link {

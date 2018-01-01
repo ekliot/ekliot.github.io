@@ -18,21 +18,60 @@ png.palette.each_with_index do |pt, i|
   end
 end
 
+runes = ['k', 'l', 'i', 'o', 't']
+ridx = 0
+
+rune_w = 7
+rune_h = 11
+rune_space = 2
+@rune_start_l = 7
+@rune_start_t = 26
+
+@max_rune_w = @rune_start_l + rune_w - 1
+@max_rune_h = @rune_start_t + runes.size * ( rune_h + rune_space ) - rune_space
+
+rune_active = false
+rune_hex = "#180018"
+
+html_str = ""
+
+def rune_row?( r )
+  return r.between?( @rune_start_t, @max_rune_h ) \
+      && ((r - @rune_start_t) % 13) <= 10
+end
+
+def rune_col?( c )
+  return c.between?( @rune_start_l, @max_rune_w )
+end
+
+def is_rune?( r, c )
+  return rune_col?( c ) && rune_row?( r )
+end
+
 for r in 0...png.height
   row = png.row r
-  html.write "<!-- row#{r} -->\n"
-  for c in 0...row.size
-    # px = png.get_pixel( r, c )
-    px = row[c]
+  html_str += "<!-- row#{r} -->\n"
 
-    hex = ChunkyPNG::Color.to_hex( px, false )
+  if !rune_row?( r ) && rune_row?( r - 1 )
+    ridx += 1
+  end
+
+  for c in 0...row.size
+    hex = ChunkyPNG::Color.to_hex( row[c], false )
+
+    rune_active = is_rune? r, c
 
     if colours[hex]
-      html.write "<div class=\"px #{colours[hex]}\"></div>\n"
+      html_str += "<px class=\"#{colours[hex]}" \
+                + (hex == rune_hex ? " rune" : '') \
+                + (rune_active ? " link\" data-rune=\"#{runes[ridx]}" : '') \
+                + "\"></px>\n"
     else
-      html.write "<div class=\"px inv\"></div>\n"
+      html_str += "<px class=\"px inv\"></px>\n"
     end
   end
 end
+
+html.write html_str
 
 colours.each_pair { |name, val| p "#{name} => #{val}"  }
