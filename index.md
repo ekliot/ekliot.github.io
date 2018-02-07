@@ -5,8 +5,6 @@
 layout: home
 permalink: /home
 permalink: /
-
-title: ekliot
 ---
 
 <div class="crop"><img id="MeIMG" src="{{ site.image_dir }}/elijah.jpg"></div>

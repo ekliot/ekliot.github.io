@@ -1,5 +1,5 @@
 <div id="Header">
-    <h1 class="text-pull" style="padding-left: 1.5em;">{{ page.title }}</h1>
+    <h1 class="text-pull" style="padding-left: 1.5em;">{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</h1>
     <!-- <div id="NavMobile" class="block-row-xxs-{{ site.roots | size }} text-center"> -->
     <div id="NavMobile" class="text-pull">
         {% for r in site.roots %}
