@@ -34,6 +34,17 @@ image_dir:  assets/media/images
 video_dir:  assets/media/videos
 pdf_dir:    assets/media/pdfs
 
+markdown: kramdown
+
+# collections config
+collections:
+  posts:
+    permalink: /log/:year/:month/:slug
+    output: true
+  projects:
+    permalink: /makes/:title
+    output: true
+
 roots:
   -
     label: 'home'
@@ -43,7 +54,56 @@ roots:
   - about
   - contact
 
-markdown: kramdown
+# site defaults
+defaults:
+  -
+    scope:
+      path: ""
+    values:
+      author: "ekliot"
+  -
+    scope:
+      path: "_projects"
+    values:
+      layout: "project"
+      category: "projects"
+      root: projects
+  # -
+  #   scope:
+  #     path: "_posts"
+  #   values:
+  #     layout: "post"
+  #     category: "posts"
+  #     root: "log"
+
+# # jekyll-archive vars
+# jekyll-archives:
+#   enabled:
+#     - year
+#     - month
+#     - tags
+#   layouts:
+#     year:  archive-year
+#     month: archive-month
+#     tag:   archive-tag
+#   permalinks:
+#     year:  '/posts/:year/'
+#     month: '/posts/:year/:month/'
+#     tag:   '/posts/tag/:name/'
+
+# # jekyll-seo-tag vars
+# twitter:
+#   username: ekliot
+# social:
+#   name: Elijah Kliot
+#   links:
+#     - https://github.com/ekliot
+#     - https://twitter.com/ekliot
+#     - https://www.linkedin.com/in/ekliot
+
+# Build settings
+incremental: true
+future: true
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
