@@ -38,9 +38,9 @@ markdown: kramdown
 
 # collections config
 collections:
-  posts:
-    permalink: /log/:year/:month/:slug
-    output: true
+  # posts:
+  #   permalink: /log/:year/:month/:slug
+  #   output: true
   projects:
     permalink: /makes/:title
     output: true
