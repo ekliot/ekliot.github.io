@@ -1,27 +1,16 @@
-/**
-$gutter-color: rgb(100, 100, 110);
-$bg-color: white;
+$gutter-color: rgb(28, 20, 20);
+$bg-color: rgb(43, 18, 20);
 
 $primary:   rgb(228, 27, 103);
 $secondary: rgb(163, 2, 63);
 
-// $text-color: rgb(40, 20, 20);
-$text-color: black;
+$text-color: white;
 
-$anchor-color:   rgb(230, 174, 31);
+$anchor-color:   $col-hilt-mid;
 $anchor-visited: darken($anchor-color, 15%);
 $anchor-active:  $anchor-visited;
-$anchor-hover:   $secondary;
+$anchor-hover:   $col-hilt-high;
 
-$navlink-color:  $gutter-color;
-$navlink-hover:  darken($navlink-color, 15%);
-$navlink-active: darken($navlink-color, 30%);
-
-$social-bullet-icon: "\1F732";
-
-// $navlink-color:  rgb(100, 100, 145);
-// $navlink-hover:  rgb(55, 55, 75);
-// $navlink-active: rgb(35, 35, 45);
-// $navlink-hover:  $anchor-hover;
-// $navlink-active: $anchor-active;
-**/
+$navlink-color:  $col-hilt-mid;
+$navlink-hover:  lighten($navlink-color, 15%);
+$navlink-active: lighten($navlink-color, 30%);

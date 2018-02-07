@@ -13,7 +13,7 @@ covered = false
 revealing = false
 
 # how many cells per row
-subdivs    = 12 # max 12, per responsivebp grid guidelines
+subdivs    = 50 # max 12, per responsivebp grid guidelines
 # how many total cells exist
 cell_cnt   = 0
 # how many cells have been cleared
@@ -29,59 +29,6 @@ step_accel = -1 # ms
 squares = []
 
 # dynamically builds and resizes the coverdiv according to window size
-resize_cover = () ->
-  coverdiv  = document.getElementById "Coverup"
-  container = document.getElementById( "Contents" ).parentNode
-  cont_rect = container.getBoundingClientRect()
-
-  # don't start modifying the rows if we're currently mid-animation
-  if not revealing
-    # how many rows there currently are
-    row_cur  = coverdiv.children.length
-    # how many rows are needed to cover the whole container
-    row_need = Math.ceil( cont_rect.height / ( cont_rect.width / subdivs ) )
-    # how many rows need to be added (can be negative for removal)
-    row_add  = row_need - row_cur
-
-    # if we need to add more rows
-    if row_add > 0
-      # the buffer string for additional row strings to add
-      rows = ""
-      for r in [0...row_add]
-        squares.push []
-        # begin building row r
-        rows += "<div class=\"cover_row block-row-xxs-#{subdivs}\">"
-        # add columns to the row
-        for col in [0...subdivs]
-          squares[r].push true
-          rows += "<div class=\"square\"></div>"
-        # cap building row r
-        rows += "</div>"
-      # add the row buffer to the end of the coverdiv
-      coverdiv.innerHTML = coverdiv.innerHTML + rows
-    # if we need to cut rows
-    else if row_add < 0
-      for r in [0...row_add] by -1
-        # remove the last row of the coverdiv
-        coverdiv.removeChild( coverdiv.lastChild )
-        squares.pop()
-
-  # reposition the coverdiv to line up with the container
-  coverdiv.style.left  = cont_rect.left + "px"
-  # set the coverdiv to be as wide as the container
-  coverdiv.style.width = cont_rect.width + "px"
-
-  #
-  # at this point, the responsivebp grid should resize each column's width, but not height
-  #
-
-  # each column should be as high as it is wide (squares)
-  col_h = "#{coverdiv.children[0].children[0].getBoundingClientRect().width}px"
-
-  # set the height of each square
-  for row in coverdiv.children
-    for col in row.children
-      col.style["min-height"] = col_h
 
 coverup = () ->
   container = document.getElementById( "Contents" ).parentNode

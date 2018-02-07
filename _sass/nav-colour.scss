@@ -1,5 +1,10 @@
+$col-rune: #2d2d37;
+$col-hilt-low: #9f6a02;
+$col-hilt-mid: #e4a71b;
+$col-hilt-high: #fdc34a;
+
 .c1 {
-  background-color: #2d2d37;
+  background-color: $col-rune;
 }
 
 .c2 {
@@ -19,7 +24,7 @@
 }
 
 .c6 {
-  background-color: #9f6a02;
+  background-color: $col-hilt-low;
 }
 
 .c7 {
@@ -31,7 +36,7 @@
 }
 
 .c9 {
-  background-color: #e4a71b;
+  background-color: $col-hilt-mid;
 }
 
 .c10 {
@@ -45,4 +50,3 @@
 .c12 {
   background-color: #fdc34a;
 }
-

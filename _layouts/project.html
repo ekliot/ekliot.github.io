@@ -6,10 +6,7 @@ layout: default
     <div class="body">
         {% if page.pic %}
         <div class="media">
-            <img src="{{ page.pic }}"
-            {% if page.pic_alt %}
-                 alt="{{ page.pic_alt }}"
-            {% endif %}/>
+            <img src="{{ page.pic }}"{% if page.pic_alt %}alt="{{ page.pic_alt }}"{% endif %}/>
         </div>
         {% endif %}
 
