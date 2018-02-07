@@ -1,0 +1,24 @@
+---
+layout: default
+---
+
+<div id="Contents">
+    <div class="body">
+        {% if page.pic %}
+        <div class="media">
+            <img src="{{ page.pic }}"
+            {% if page.pic_alt %}
+                 alt="{{ page.pic_alt }}"
+            {% endif %}/>
+        </div>
+        {% endif %}
+
+        {{ content }}
+    </div>
+
+    <div class="taglist">
+        {% for tag in page.tags %}
+        <a href="{{ site.baseurl }}/{{ tag }}", class="tag">{{ tag }}</a>
+        {% endfor %}
+    </div>
+</div>

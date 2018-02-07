@@ -1,0 +1,54 @@
+<div id="Header">
+    <!-- <div class="text-center">
+        <div id="Header" class="text-pull">
+            <h1><a href="{{ site.url }}">{{ site.title }}</a></h1>
+        </div>
+
+        {% if page.heading.title %}
+        <h1 style="font-variant: small-caps;">{{ page.heading.title | liquify }}</h1>
+        {% elsif layout.heading.title %}
+        <h1 style="font-variant: small-caps;">{{ layout.heading.title | liquify }}</h1>
+        {% elsif page.title %}
+        <h1 style="font-variant: small-caps;">{{ page.title | liquify }}</h1>
+        {% elsif layout.title %}
+        <h1 style="font-variant: small-caps;">{{ layout.title | liquify }}</h1>
+        {% endif %}
+
+        {% if page.heading.subtitle %}
+        <h3 style="font-variant: small-caps;">{{ page.heading.subtitle | liquify }}</h3>
+        {% elsif layout.heading.subtitle %}
+        <h3 style="font-variant: small-caps;">{{ layout.heading.subtitle | liquify }}</h3>
+        {% elsif page.subtitle %}
+        <h3 style="font-variant: small-caps;">{{ page.subtitle | liquify }}</h3>
+        {% elsif layout.subtitle %}
+        <h3 style="font-variant: small-caps;">{{ layout.subtitle | liquify }}</h3>
+        {% elsif page.date %}
+        <h3 style="font-variant: small-caps;">{{ page.date | date: "%b %e, %Y" }}</h3>
+        {% endif %}
+    </div>
+
+    <div id="RootLinks" class="text-pull">
+        {% if page.root %}{% assign root=page.root %}
+        {% elsif layout.root %}{% assign root=layout.root %}
+        {% else %}{% capture root %}{{ page.path | split: '/' | first }}{% endcapture %}
+        {% endif %}
+        {% for r in site.roots %}
+        {% if r.url and r.label %}
+        <a href="{{ site.url }}/{{ r.url }}" {% if r.label == root %}class="active"{% endif %}>{{ r.label }}</a>
+        {% elsif r %}
+        <a href="{{ site.url }}/{{ r }}" {% if r == root %}class="active"{% endif %}>{{ r }}</a>
+        {% endif %}
+        {% endfor %}
+    </div> -->
+    <h1 class="text-pull" style="padding-left: 1.5em;">{{ page.title }}</h1>
+    <div id="NavMobile" class="block-row-xxs-{{ site.roots | size }} text-center">
+    <!-- <div id="NavMobile" class="text-pull"> -->
+        {% for r in site.roots %}
+        {% if r.url and r.label %}
+        <a href="{{ site.url }}/{{ r.url }}" {% if r.label == root %}class="active"{% endif %}>{{ r.label }}</a>
+        {% elsif r %}
+        <a href="{{ site.url }}/{{ r }}" {% if r == root %}class="active"{% endif %}>{{ r }}</a>
+        {% endif %}
+        {% endfor %}
+    </div>
+</div>

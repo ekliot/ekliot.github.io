@@ -1,3 +1,3 @@
 #!/bin/bash
 
-ruby read_png.rb sword-nav
+ruby png_to_nav.rb sword-nav

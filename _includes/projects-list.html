@@ -1,0 +1,32 @@
+{% comment %}
+Expected include variables:
+  - projects <Array<Project>>
+  + limit <Int>
+      - optional
+      - if specified, will only iterate for the first `limit` posts in the array
+{% endcomment %}
+
+<ul class="no-bullets projects_list">
+    {% if include.limit %}
+    {% capture max %}{{ include.limit | minus: 1 }}{% endcapture %}
+    {% for i in (0..max) %}
+    <li>
+        {% assign proj=projects[i] %}{% include project-preview.html project=proj %}
+        {% unless forloop.last %}
+        <hr>
+        {% endunless %}
+    </li>
+    {% endfor %}
+
+    {% else %}
+    {% for p in include.projects %}
+    <li>
+        {% include project-preview.html project=p %}
+        {% unless forloop.last %}
+        <hr>
+        {% endunless %}
+    </li>
+    {% endfor %}
+
+    {% endif %}
+</ul>

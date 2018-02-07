@@ -1,0 +1,79 @@
+/**
+#Heading {
+  // give a bit of breathing room for the content below
+  margin-bottom: 1.8em;
+
+  // make the gap between the title and subtitle not so severe
+  $title-margin: 0em;
+
+  div {
+    h1 {
+      margin-bottom: $title-margin;
+    }
+    h3 {
+      margin-top: $title-margin;
+      margin-bottom: 0; // this is so the gap between the titles and nav bar work if there is no subtitle
+      color: $gutter-color;
+      // color: lighten($text-color, 30%);
+    }
+  }
+}
+
+#Header {
+  // make the header semi-opaque and stick to the top
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0px;
+  background-color: rgba($bg-color, 0.8);
+
+  // give the header a bit of space
+  padding-top: 1em;
+  // padding-bottom: 0.3em;
+
+  h1 a {
+    color: $primary;
+
+    &:hover {
+      color: $secondary;
+    }
+  }
+}
+
+#RootLinks {
+  // make sure there's some breathing room from the titles
+  margin-top: 1.2em;
+
+  // this is to let the selected page labels pop
+  padding-top: 0.2em;
+  border-top: 1px solid $gutter-color;
+
+  a {
+    // organize the RootLinks
+    display: inline-block;
+    padding-top: 4px;
+    margin-top: -4px;
+    margin-right: 1em;
+
+    // set the colour
+    color: $navlink-color;
+
+    &:hover {
+      color: $navlink-hover;
+    }
+
+    &.active, &.active:hover {
+      color: $navlink-active;
+      border-top: 2px solid $navlink-active;
+    }
+  }
+
+
+  // remove the border on smaller screens, otherwise it looks a little awkward
+  @media screen and (max-width: 600px) {
+    a.active, a.active:hover {
+      border-top: none;
+      font-weight: bold;
+    }
+  }
+}
+**/

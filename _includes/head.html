@@ -1,0 +1,23 @@
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>TESTERTERERETESE</title>
+<!-- <title>{% if page.title %}{{ page.title | escape }} :: {% endif %}{{ site.title | escape }}</title> -->
+<!-- meta name="description" content="{{ page.excerpt | default: site.description | strip_html | normalize_whitespace | truncate: 160 | escape }}" -->
+
+<link rel="stylesheet" href="{{ "assets/style/responsive.min.css" | absolute_url }}">
+<link rel="stylesheet" href="{{ "main.css" | absolute_url }}">
+
+{% if page.script %}
+{% if site.script_dir %}<script type="text/javascript" src="{{ site.script_dir }}/{{ page.script }}"></script>
+{% else %}<script type="text/javascript" src="{{ page.script }}"></script>{% endif %}
+{% endif %}
+
+{% if page.style %}
+{% if site.style_dir %}<link rel="stylesheet" href="{{ site.style_dir }}/{{ page.style }}">
+{% else %}<link rel="stylesheet" href="{{ page.style }}">{% endif %}
+{% endif %}
+
+<!-- link rel="canonical" href="{{ page.url | replace:'index.html','' | absolute_url }}" -->
+<!-- link rel="alternate" type="application/rss+xml" title="{{ site.title | escape }}" href="{{ "/feed.xml" | relative_url }}" -->

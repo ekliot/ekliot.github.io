@@ -1,0 +1,11 @@
+{% comment %}
+Expected include variables:
+  - project <Project>
+{% endcomment %}
+
+<div class="project-preview">
+    <h3 class="text-pull"><a href="{{ site.url }}{{ include.project.url }}">{{ include.project.title }}</a></h3>
+    {% if include.project.category %}
+    <h5 class="proj-cat">{{ include.project.category }}</h5>
+    {% endif %}
+</div>

@@ -1,0 +1,24 @@
+---
+layout: default
+---
+
+<div id="Contents">
+    <div class="body">
+        {% if page.pic %}
+        <div class="media">
+            <img src="{{ page.pic }}"
+            {% if page.pic_alt %}
+                 alt="{{ page.pic_alt }}"
+            {% endif %}/>
+        </div>
+        {% endif %}
+
+        {{ content }}
+    </div>
+
+    {% if page.tags.size > 0 %}
+    <hr>
+
+    <h5 class="text-push">Read more about: {% include tag-list.html tags=page.tags divider=' &#5159;' %}</h6>
+    {% endif %}
+</div>

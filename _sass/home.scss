@@ -1,0 +1,23 @@
+/**
+#Coverup {
+  position: absolute;
+  z-index: 1;
+}
+
+.cover_row {
+  margin: 0;
+}
+
+.square {
+  border: none;
+  padding: none;
+  margin: none;
+  background-color: $gutter-color;
+}
+
+.hidecell {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s 1s, opacity 1s ease-in-out;
+}
+**/
