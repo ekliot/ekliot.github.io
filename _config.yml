@@ -19,6 +19,8 @@ description: The landing page for everything of Elijah Kliot's
 url: "https://www.ekliot.com" # the base hostname & protocol for your site, e.g. http://example.com
 baseurl: "/" # the subpath of your site, e.g. /blog
 
+destination: ./docs
+
 #sass
 sass:
   sass_dir: _sass
