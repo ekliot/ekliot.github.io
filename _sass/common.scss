@@ -26,7 +26,7 @@ body {
   color: $text-color;
 }
 
-#Main {
+#Container {
   background-color: $bg-color;
 
   .row {
@@ -34,8 +34,25 @@ body {
   }
 }
 
+#Main {
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
 #Header {
   border-bottom: 2px solid white;
+}
+
+#Titles {
+  padding-left: 2em;
+  padding-right: 0;
+}
+
+@media screen and (max-width: 599px) {
+  #Titles {
+    padding-left: 1.5em;
+    padding-right: 1.5em;
+  }
 }
 
 #Content {
@@ -45,6 +62,14 @@ body {
   padding: 2em;
   border-top: 2px solid white;
   margin-top: 3em;
+}
+
+svg {
+  fill: $anchor-color;
+
+  &:hover {
+    fill: $anchor-hover;
+  }
 }
 
 a {
@@ -62,9 +87,17 @@ a {
   &:hover {
     color: $anchor-hover;
     text-decoration: underline;
+
+    svg {
+      fill: $anchor-hover;
+    }
   }
 
   &:active {
     color: $anchor-active;
   }
+}
+
+.repo-link {
+  width: 100%;
 }

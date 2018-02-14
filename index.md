@@ -5,6 +5,7 @@
 layout: home
 permalink: /home
 permalink: /
+script: home.js
 ---
 
 <div class="crop"><img id="MeIMG" src="{{ site.image_dir }}/elijah.jpg"></div>

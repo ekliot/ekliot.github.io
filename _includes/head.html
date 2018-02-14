@@ -2,15 +2,17 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>{% if page.title %}{{ page.title | escape }} // {% endif %}{{ site.title | escape }}</title>
 <!-- meta name="description" content="{{ page.excerpt | default: site.description | strip_html | normalize_whitespace | truncate: 160 | escape }}" -->
 
-<link rel="stylesheet" href="assets/style/responsive.min.css">
-<link rel="stylesheet" href="main.css">
+<link rel="stylesheet" href="/assets/style/responsive.min.css">
+<link rel="stylesheet" href="/main.css">
 
+<title>{% if page.title %}{{ page.title | escape }} // {% endif %}{{ site.title | escape }}</title>
+
+<script type="text/javascript" src="/{{site.script_dir}}/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="/{{site.script_dir}}/responsive.min.js"></script>
 {% if page.script %}
-{% if site.script_dir %}<script type="text/javascript" src="{{ site.script_dir }}/{{ page.script }}"></script>
-{% else %}<script type="text/javascript" src="{{ page.script }}"></script>{% endif %}
+<script type="text/javascript" src="{{ site.script_dir }}/{{ page.script }}"></script>
 {% endif %}
 
 {% if page.style %}

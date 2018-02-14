@@ -17,7 +17,7 @@ title: ekliot
 email: ekliot@gmail.com
 description: The landing page for everything of Elijah Kliot's
 url: "https://www.ekliot.com" # the base hostname & protocol for your site, e.g. http://example.com
-baseurl: "/" # the subpath of your site, e.g. /blog
+# baseurl: "/" # the subpath of your site, e.g. /blog
 
 excerpt_seperator: "<!-- more -->"
 paginate_path: "/pg:num"

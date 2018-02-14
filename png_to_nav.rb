@@ -9,7 +9,7 @@ fname = ARGV[0]
 png = ChunkyPNG::Image.from_datastream( ChunkyPNG::Datastream.from_file( fname + ".png" ) )
 
 html = File.new( "_includes/nav.html", "w+" )
-css  = File.new( "_sass/nav-colour.scss", "w+" )
+# css  = File.new( "_sass/nav-colour.scss", "w+" )
 
 # # # # # # # # # #
 # READ IN COLOURS #
@@ -26,7 +26,7 @@ png.palette.each_with_index do |pt, i|
     # convert it to a hex value (for CSS)
     hex = ChunkyPNG::Color.to_hex( pt, false )
     # write its CSS class into the file
-    css.write ".#{cid} {\n  background-color: #{hex};\n}\n\n"
+    # css.write ".#{cid} {\n  background-color: #{hex};\n}\n\n"
     # flag this colour in our index with its ID
     @colours[hex] = "#{cid}"
   end
@@ -66,7 +66,7 @@ rune_space = 2 # with 2px between each
 label_h = 9
 @label_w = [ 25, 25, 20, 17, 22]
 label_space = 4
-@label_start_l = 25
+@label_start_l = 30
 @label_start_t = 27
 
 # labels will not appear beyond this row
