@@ -24,16 +24,95 @@ The project consists of seven basic checkpoints (the first was simply determinin
   <section>
     <h3>Ray-Tracing Framework</h3>
 
-    <p>Recreating a basic scene:</p>
-    <img style="max-width: 50%;" src="/assets/media/images/ray-tracer/chkpt2_img1.png">
+    <div id="FrameworkCarousel" class="carousel" data-carousel-mode="slide">
+      <ol>
+        <li></li>
+        <li></li>
+      </ol>
 
-    <p>With an alternate camera angle:</p>
-    <img style="max-width: 50%;" src="/assets/media/images/ray-tracer/chkpt2_img2.png">
+      <figure class="carousel-active">
+        <a href="/assets/media/images/ray-tracer/chkpt2_img1.png"
+           class="frame_group" data-modal-group=".frame_group"
+           data-modal-title="Recreating a basic scene">
+          <img src="/assets/media/images/ray-tracer/chkpt2_img1.png">
+        </a>
+        <figcaption>
+          <h4>Recreating a basic scene</h4>
+        </figcaption>
+      </figure>
+
+      <figure>
+        <a href="/assets/media/images/ray-tracer/chkpt2_img2.png"
+           class="frame_group" data-modal-group=".frame_group"
+           data-modal-title="With alternate camera angle">
+          <img src="/assets/media/images/ray-tracer/chkpt2_img2.png">
+        </a>
+        <figcaption>
+          <h4>With alternate camera angle</h4>
+        </figcaption>
+      </figure>
+      <button><</button>
+      <button class="forward">></button>
+    </div>
   </section>
 
   <section>
     <h3>Phong Illumination</h3>
-    <p>Not yet assigned!</p>
+
+    <div id="PhongCarousel" class="carousel" data-carousel-mode="slide">
+      <ol>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ol>
+
+      <figure class="carousel-active">
+        <a href="/assets/media/images/ray-tracer/chkpt3_img1.png"
+           class="phong_group" data-modal-group=".phong_group"
+           data-modal-title="Basic Phong Illumination">
+          <img src="/assets/media/images/ray-tracer/chkpt3_img1.png">
+        </a>
+        <figcaption>
+          <h4>Basic Phong Illumination</h4>
+        </figcaption>
+      </figure>
+
+      <figure>
+        <a href="/assets/media/images/ray-tracer/chkpt3_img2.png"
+           class="phong_group" data-modal-group=".phong_group"
+           data-modal-title="With supersampling x4">
+          <img src="/assets/media/images/ray-tracer/chkpt3_img2.png">
+        </a>
+        <figcaption>
+          <h4>With supersampling x4</h4>
+        </figcaption>
+      </figure>
+
+      <figure>
+        <a href="/assets/media/images/ray-tracer/chkpt3_img3.png"
+           class="phong_group" data-modal-group=".phong_group"
+           data-modal-title="With supersampling x9">
+          <img src="/assets/media/images/ray-tracer/chkpt3_img3.png">
+        </a>
+        <figcaption>
+          <h4>With supersampling x9</h4>
+        </figcaption>
+      </figure>
+
+      <figure>
+        <a href="/assets/media/images/ray-tracer/chkpt3_img4.png"
+           class="phong_group" data-modal-group=".phong_group"
+           data-modal-title="With supersampling x16">
+          <img src="/assets/media/images/ray-tracer/chkpt3_img4.png">
+        </a>
+        <figcaption>
+          <h4>With supersampling x16</h4>
+        </figcaption>
+      </figure>
+      <button><</button>
+      <button class="forward">></button>
+    </div>
   </section>
 
   <section>
