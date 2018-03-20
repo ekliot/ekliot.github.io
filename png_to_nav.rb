@@ -1,3 +1,4 @@
+require 'json'
 require 'chunky_png'
 
 # # # # #
@@ -8,74 +9,163 @@ fname = ARGV[0]
 
 png = ChunkyPNG::Image.from_datastream( ChunkyPNG::Datastream.from_file( fname + ".png" ) )
 
-html = File.new( "_includes/nav.html", "w+" )
+# html = File.new( "_includes/nav.html", "w+" )
 # css  = File.new( "_sass/nav-colour.scss", "w+" )
+json_out = File.new( "assets/scripts/nav_data.json", "w+" )
 
 # # # # # # # # # #
 # READ IN COLOURS #
 # # # # # # # # # #
 
-@colours = {}
-
-# for each colour of the png's palette
-png.palette.each_with_index do |pt, i|
-  # if the colour isn't transparent
-  if pt > 0
-    # give it an ID of the i-th colour
-    cid = "c#{i}"
-    # convert it to a hex value (for CSS)
-    hex = ChunkyPNG::Color.to_hex( pt, false )
-    # write its CSS class into the file
-    # css.write ".#{cid} {\n  background-color: #{hex};\n}\n\n"
-    # flag this colour in our index with its ID
-    @colours[hex] = "#{cid}"
-  end
-end
+# @colours = {}
+#
+# # for each colour of the png's palette
+# png.palette.each_with_index do |pt, i|
+#   # if the colour isn't transparent
+#   if pt > 0
+#     # give it an ID of the i-th colour
+#     cid = "c#{i}"
+#     # convert it to a hex value (for CSS)
+#     hex = ChunkyPNG::Color.to_hex( pt, false )
+#     # write its CSS class into the file
+#     # css.write ".#{cid} {\n  background-color: #{hex};\n}\n\n"
+#     # flag this colour in our index with its ID
+#     @colours[hex] = "#{cid}"
+#   end
+# end
 
 # # # # # # # # #
 # RUNE VAR INIT #
 # # # # # # # # #
 
 # the runes we're expecting to find
-@runes = [
-  ['k', "home", "/"],
-  ['l', "projects", "/projects"],
-  ['i', "log", "/log"],
-  ['o', "about", "/about"],
-  ['t', "contact", "/contact"],
-]
+@runes = [ :home, :projects, :log, :about, :contact ]
 @ridx = 0
 
 # properties of rune sizes and spacing
-rune_w = 7 # each rune is 7px wide
-rune_h = 11 # and 11px tall
-rune_space = 2 # with 2px between each
-@rune_start_l = 7 # the runes start at the 7th column
-@rune_start_t = 26 # and at the 26th row
+@_rune = {
+  w: 7, # each rune is 7px wide
+  h: 11, # and 11px tall
+  space: 2, # with 2px between each
+  start_x: 7, # the runes start at the 7th column
+  start_y: 26, # and at the 26th row
+  active: false, # flag for whether a rune is being traversed
+  hex: "#2d2d37" # colour of the runes
+}
 
 # runes will not appear beyond this column
-@max_rune_w = @rune_start_l + rune_w - 1
+@_rune[:max_x] = @_rune[:start_x] + @_rune[:w] - 1
 # nor beyond this row
-@max_rune_h = @rune_start_t + @runes.size * ( rune_h + rune_space ) - rune_space
+@_rune[:max_y] = @_rune[:start_y] + @runes.size * ( @_rune[:h] + @_rune[:space] ) - @_rune[:space]
 
-# initialize flag for whether a rune is being traversed
-@rune_active = false
-# and the actual colour of the runes
-@rune_hex = "#2d2d37"
+# # # # # # # # # #
+# LABEL VAR INIT  #
+# # # # # # # # # #
 
-label_h = 9
-@label_w = [ 25, 25, 20, 17, 22]
-label_space = 4
-@label_start_l = 30
-@label_start_t = 27
+# properties of label sizes and spacing
+@_label = {
+  w: [ 19, 19, 14, 11, 14 ],
+  h: 7,
+  space: 6,
+  start_x: 31,
+  start_y: 28,
+  active: false,
+  hex: "#fafffa"
+}
 
 # labels will not appear beyond this row
-@max_label_h = @label_start_t + @runes.size * ( label_h + label_space ) - label_space
+@_label[:max_y] = @_label[:start_y] + @runes.size * ( @_label[:h] + @_label[:space] ) - @_label[:space]
 
-# initialize flag for whether a label is being traversed
-@label_active = false
-
-html_str = ""
+@data_hash = {
+  size: { w: 50, h: 98 },
+  runes: {
+    range: {
+      min: { x: @_rune[:start_x], y: @_rune[:start_y] },
+      max: { x: @_rune[:max_x],   y: @_rune[:max_y]   }
+    },
+    home: {
+      range: {
+        min: { x: @_rune[:start_x], y: @_rune[:start_y] + ( @_rune[:h] + @_rune[:space] ) * 0 },
+        max: { x: @_rune[:start_x] + @_rune[:w], y: @_rune[:start_y] + @_rune[:h] * 1 + @_rune[:space] * 0 }
+      },
+      px: []
+    },
+    projects: {
+      range: {
+        min: { x: @_rune[:start_x], y: @_rune[:start_y] + ( @_rune[:h] + @_rune[:space] ) * 1 },
+        max: { x: @_rune[:start_x] + @_rune[:w], y: @_rune[:start_y] + @_rune[:h] * 2 + @_rune[:space] * 1 }
+      },
+      px: []
+    },
+    log: {
+      range: {
+        min: { x: @_rune[:start_x], y: @_rune[:start_y] + ( @_rune[:h] + @_rune[:space] ) * 2 },
+        max: { x: @_rune[:start_x] + @_rune[:w], y: @_rune[:start_y] + @_rune[:h] * 3 + @_rune[:space] * 2 }
+      },
+      px: []
+    },
+    about: {
+      range: {
+        min: { x: @_rune[:start_x], y: @_rune[:start_y] + ( @_rune[:h] + @_rune[:space] ) * 3 },
+        max: { x: @_rune[:start_x] + @_rune[:w], y: @_rune[:start_y] + @_rune[:h] * 4 + @_rune[:space] * 3 }
+      },
+      px: []
+    },
+    contact: {
+      range: {
+        min: { x: @_rune[:start_x], y: @_rune[:start_y] + ( @_rune[:h] + @_rune[:space] ) * 4 },
+        max: { x: @_rune[:start_x] + @_rune[:w], y: @_rune[:start_y] + @_rune[:h] * 5 + @_rune[:space] * 4 }
+      },
+      px: []
+    }
+  },
+  labels: {
+    range: {
+      min: { x: @_label[:start_x], y: @_label[:start_y] },
+      max: { y: @_label[:max_y] }
+    },
+    home: {
+      w: @_label[:w][0],
+      range: {
+        min: { x: @_label[:start_x], y: @_label[:start_y] + ( @_label[:h] + @_label[:space] ) * 0 },
+        max: { x: @_label[:start_x] + @_label[:w][0], y: @_label[:start_y] + @_label[:h] * 1 + @_label[:space] * 0 }
+      },
+      px: []
+    },
+    projects: {
+      w: @_label[:w][1],
+      range: {
+        min: { x: @_label[:start_x], y: @_label[:start_y] + ( @_label[:h] + @_label[:space] ) * 1 },
+        max: { x: @_label[:start_x] + @_label[:w][1], y: @_label[:start_y] + @_label[:h] * 2 + @_label[:space] * 1 }
+      },
+      px: []
+    },
+    log: {
+      w: @_label[:w][2],
+      range: {
+        min: { x: @_label[:start_x], y: @_label[:start_y] + ( @_label[:h] + @_label[:space] ) * 2 },
+        max: { x: @_label[:start_x] + @_label[:w][2], y: @_label[:start_y] + @_label[:h] * 3 + @_label[:space] * 2 }
+      },
+      px: []
+    },
+    about: {
+      w: @_label[:w][3],
+      range: {
+        min: { x: @_label[:start_x], y: @_label[:start_y] + ( @_label[:h] + @_label[:space] ) * 3 },
+        max: { x: @_label[:start_x] + @_label[:w][3], y: @_label[:start_y] + @_label[:h] * 4 + @_label[:space] * 3 }
+      },
+      px: []
+    },
+    contact: {
+      w: @_label[:w][4],
+      range: {
+        min: { x: @_label[:start_x], y: @_label[:start_y] + ( @_label[:h] + @_label[:space] ) * 4 },
+        max: { x: @_label[:start_x] + @_label[:w][4], y: @_label[:start_y] + @_label[:h] * 5 + @_label[:space] * 4 }
+      },
+      px: []
+    }
+  }
+}
 
 # # # # # # # # #
 # RUNE HELPERS  #
@@ -83,13 +173,13 @@ html_str = ""
 
 # are we in a row where a rune is active?
 def rune_row?( r )
-  r.between?( @rune_start_t, @max_rune_h ) \
-    && ((r - @rune_start_t) % 13) <= 10
+  r.between?( @_rune[:start_y], @_rune[:max_y] ) \
+    && ((r - @_rune[:start_y]) % 13) <= 10
 end
 
 # are we in a column where a rune is active?
 def rune_col?( c )
-  c.between?( @rune_start_l, @max_rune_w )
+  c.between?( @_rune[:start_x], @_rune[:max_x] )
 end
 
 # are we in a position where a rune is active?
@@ -102,14 +192,14 @@ end
 # # # # # # # # #
 
 def label_row?( r )
-  idx = (r - @label_start_t) % 13
-  r.between?( @label_start_t, @max_label_h ) \
+  idx = (r - @_label[:start_y]) % 13
+  r.between?( @_label[:start_y], @_label[:max_y] ) \
     && idx <= 9
 end
 
 def label_col?( c )
-  max_w = @label_start_l + @label_w[@ridx]
-  c.between?( @label_start_l, max_w )
+  max_w = @_label[:start_x] + @_label[:w][@ridx]
+  c.between?( @_label[:start_x], max_w )
 end
 
 def is_label?( r, c )
@@ -117,63 +207,50 @@ def is_label?( r, c )
 end
 
 # # # # # # # # #
-# HTML BUILDING #
+# JSON BUILDING #
 # # # # # # # # #
-
-def liquid_root_check( rune_data )
-  root = rune_data[1]
-  type = "rune" + if @label_active then "-label" else "" end
-  "{% if root==\"#{root}\" %} active{% endif %} #{type}"
-end
-
-def make_px( hex )
-  rune_data = @runes[@ridx]
-  if @rune_active
-    "<a class=\"px #{@colours[hex]}#{liquid_root_check( rune_data ) if hex == @rune_hex}\" href=\"#{rune_data[2]}\" data-rune=\"#{rune_data[0]}\"></a>"
-  elsif @label_active
-    "<a class=\"px #{@colours[hex]}#{liquid_root_check( rune_data )}\" href=\"#{rune_data[2]}\" data-label=\"#{rune_data[0]}\"></a>"
-  else
-    "<div class=\"px #{@colours[hex]}\"></div>"
-  end
-end
-
-html_str += "{% assign root=include.root %}\n<div id=\"Nav\">\n"
 
 # traverse the PNG
 for r in 0...png.height
-  row = png.row r
-  html_str += "    <!-- row#{r} -->\n    "
-
   # if the current row is not a rune, and the last one was
   if !rune_row?( r ) && rune_row?( r - 1 )
     # move the cursor to the next rune
     @ridx += 1
   end
 
-  for c in 0...row.size
-    hex = ChunkyPNG::Color.to_hex( row[c], false )
+  # only bother reading the rows with data we care about
+  if @ridx < @runes.size
+    row = png.row r
 
-    # set rune flag
-    @rune_active = @ridx < @runes.size && is_rune?( r, c )
-    @label_active = @ridx < @runes.size && is_label?( r, c )
+    cur_rune = @runes[@ridx]
 
-    # if this px is in our colour table (i.e. it isn't invisible)
-    if @colours[hex] || @label_active
-      # make a px element for it
-      html_str += make_px hex
-    else
-      # otherwise, just add an invisible pixel
-      html_str += "<div class=\"px inv\"></div>"
+    if rune_row?( r ) || label_row?( r )
+      for c in 0...row.size
+        # set rune flag
+        @_rune[:active]  = @ridx < @runes.size && is_rune?( r, c )
+        @_label[:active] = @ridx < @runes.size && is_label?( r, c )
+
+        hex = ChunkyPNG::Color.to_hex( row[c], false )
+
+        # if this px is in our colour table (i.e. it isn't invisible)
+        if hex == @_label[:hex]
+          @data_hash[:labels][cur_rune][:px] << { x: c, y: r }
+        elsif @_rune[:active] && hex == @_rune[:hex]
+          @data_hash[:runes][cur_rune][:px] << { x: c, y: r }
+        end
+      end
     end
+  elsif @ridx == @runes.size
+    break
   end
-
-  html_str += "\n"
 end
 
-html.write html_str + "</div>\n"
+@data_hash[:labels].each do |k, v|
+  if k != :range then v[:px].sort_by! { |px| px[:x] } end
+end
 
-# # # # # # # # # # # #
-# EXTRA DEBUG OUTPUT  #
-# # # # # # # # # # # #
+@data_hash[:runes].each do |k, v|
+  if k != :range then v[:px].sort_by! { |px| px[:x] } end
+end
 
-@colours.each_pair { |name, val| p "#{name} => #{val}"  }
+json_out << @data_hash.to_json

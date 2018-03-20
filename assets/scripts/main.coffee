@@ -19,17 +19,45 @@ shuffle = (a) ->
     a[i] = t
   a
 
-coverup = () ->
+
+window.onload = () ->
+  canv = $( "#Nav" )[0]
+  if canv.getContext
+    $.getJSON '/assets/scripts/nav_data.json', ( data ) ->
+      bgcolor = $( "#Container" ).css( "background-color" )
+      nav = new Nav(
+        canv, data, bgcolor,
+        canv.dataset.root
+      )
+  name = "ekliot"
+  mail = "gmail.com"
+  if document.getElementById( "NoJS" )
+    document.getElementById( "NoJS" ).innerHTML = " at <a href =\"mailto:#{name}@#{mail}\">#{name}@#{mail}</a>"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# coverup = () ->
   # nav_bar = document.getElementById "Nav"
   #
-  start = new Date().getTime()
-  px_arr = [].slice.call( document.getElementsByClassName "rune-label" ).filter (px) ->
-    ![].slice.call( px.classList ).includes "active"
-  px.classList.add( "invisible" ) for px in px_arr
-  end = new Date().getTime()
-  console.log start
-  console.log end
-  console.log end-start
+  # start = new Date().getTime()
+  # px_arr = [].slice.call( document.getElementsByClassName "rune-label" ).filter (px) ->
+  #   ![].slice.call( px.classList ).includes "active"
+  # px.classList.add( "invisible" ) for px in px_arr
+  # end = new Date().getTime()
+  # console.log start
+  # console.log end
+  # console.log end-start
   #
   # console.log px_arr.length
   #
@@ -58,7 +86,7 @@ coverup = () ->
   #
   # covered = true
 
-window.onload = () ->
+# window.onload = () ->
   # coverup()
   # until covered
   #   await sleep( 50 )

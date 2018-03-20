@@ -1,12 +1,12 @@
-$px-size-m: 5px;
-$px-size-s: 4px;
-$px-size-xs: 3px;
-$nav-w: 50;
-$nav-h: 98;
-
-#NavMobile {
-  display: none;
-}
+// $px-size-m: 5px;
+// $px-size-s: 4px;
+// $px-size-xs: 3px;
+// $nav-w: 50;
+// $nav-h: 98;
+//
+// #NavMobile {
+//   display: none;
+// }
 
 @media screen and (max-width: 599px) {
   #Nav {
@@ -18,48 +18,65 @@ $nav-h: 98;
   }
 }
 
-@media screen and (min-width: 600px) and (max-width: 800px) {
+@media screen and (min-width: 600px) {
   #Nav {
-    width: $nav-w*$px-size-xs;
-    max-height: $nav-h*$px-size-xs;
+    display: block;
   }
 
-  .px {
-    min-width: $px-size-xs;
-    min-height: $px-size-xs;
+  #NavMobile {
+    display: none;
   }
 }
 
-@media screen and (min-width: 800px) and (max-width: 1000px) {
-  #Nav {
-    width: $nav-w*$px-size-s;
-    max-height: $nav-h*$px-size-s;
-  }
-
-  .px {
-    min-width: $px-size-s;
-    min-height: $px-size-s;
-  }
-}
-
-@media screen and (min-width: 1000px) {
-  #Nav {
-    width: $nav-w*$px-size-m;
-    max-height: $nav-h*$px-size-m;
-  }
-
-  .px {
-    min-width: $px-size-m;
-    min-height: $px-size-m;
-  }
-}
+// @media screen and (min-width: 600px) and (max-width: 800px) {
+//   #Nav {
+//     min-width: $nav-w*$px-size-xs;
+//     height: $nav-h*$px-size-xs;
+//   }
+//
+//   .px {
+//     min-width: $px-size-xs;
+//     min-height: $px-size-xs;
+//   }
+// }
+//
+// @media screen and (min-width: 800px) and (max-width: 1000px) {
+//   #Nav {
+//     min-width: $nav-w*$px-size-s;
+//     height: $nav-h*$px-size-s;
+//   }
+//
+//   .px {
+//     min-width: $px-size-s;
+//     min-height: $px-size-s;
+//   }
+// }
+//
+// @media screen and (min-width: 1000px) {
+//   #Nav {
+//     min-width: $nav-w*$px-size-m;
+//     height: $nav-h*$px-size-m;
+//   }
+//
+//   .px {
+//     min-width: $px-size-m;
+//     min-height: $px-size-m;
+//   }
+// }
 
 #Nav {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
+  width: 100%;
+  image-rendering: optimizeSpeed;
+  image-rendering: crisp-edges;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: -o-crisp-edges;
+  image-rendering: -webkit-optimize-contrast;
+  -ms-interpolation-mode: nearest-neighbor;
+
+  // background-image: image("/assets/media/images/sword-nav.png");
+  // background-color: rgb(200, 0, 255);
 }
 
-.rune.active {
-  background-color: red;
-}
+// .rune.active {
+//   background-color: red;
+// }
