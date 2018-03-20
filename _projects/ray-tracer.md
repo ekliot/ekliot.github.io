@@ -51,8 +51,8 @@ The project consists of seven basic checkpoints (the first was simply determinin
           <h4>With alternate camera angle</h4>
         </figcaption>
       </figure>
-      <button><</button>
-      <button class="forward">></button>
+      <button></button>
+      <button class="forward"></button>
     </div>
   </section>
 
@@ -110,14 +110,30 @@ The project consists of seven basic checkpoints (the first was simply determinin
           <h4>With supersampling x16</h4>
         </figcaption>
       </figure>
-      <button><</button>
-      <button class="forward">></button>
+      <button></button>
+      <button class="forward"></button>
     </div>
   </section>
 
   <section>
     <h3>Procedural Textures</h3>
-    <p>Not yet assigned!</p>
+      <ol>
+        <li></li>
+      </ol>
+
+      <figure class="carousel-active">
+        <a href="/assets/media/images/ray-tracer/chkpt4_img1.png"
+           class="frame_group" data-modal-group=".frame_group"
+           data-modal-title="Procedural checkerboard texture">
+          <img src="/assets/media/images/ray-tracer/chkpt4_img1.png">
+        </a>
+        <figcaption>
+          <h4>Procedural checkerboard texture</h4>
+        </figcaption>
+      </figure>
+      <button></button>
+      <button class="forward"></button>
+    </div>
   </section>
 
   <section>
