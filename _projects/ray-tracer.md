@@ -51,7 +51,7 @@ The project consists of seven basic checkpoints (the first was simply determinin
           <h4>With alternate camera angle</h4>
         </figcaption>
       </figure>
-      <button></button>
+      <button><</button>
       <button class="forward"></button>
     </div>
   </section>
@@ -116,7 +116,8 @@ The project consists of seven basic checkpoints (the first was simply determinin
   </section>
 
   <section>
-    <h3>Procedural Textures</h3>
+    <div id="ProceduralCarousel" class="carousel" data-carousel-mode="slide">
+      <h3>Procedural Textures</h3>
       <ol>
         <li></li>
       </ol>
@@ -131,8 +132,6 @@ The project consists of seven basic checkpoints (the first was simply determinin
           <h4>Procedural checkerboard texture</h4>
         </figcaption>
       </figure>
-      <button></button>
-      <button class="forward"></button>
     </div>
   </section>
 
