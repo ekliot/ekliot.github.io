@@ -136,8 +136,23 @@ The project consists of seven basic checkpoints (the first was simply determinin
   </section>
 
   <section>
-    <h3>Reflection</h3>
-    <p>Not yet assigned!</p>
+    <div id="ReflectionCarousel" class="carousel" data-carousel-mode="slide">
+      <h3>Reflection</h3>
+      <ol>
+        <li></li>
+      </ol>
+
+      <figure class="carousel-active">
+        <a href="/assets/media/images/ray-tracer/chkpt5_img1.png"
+           class="frame_group" data-modal-group=".frame_group"
+           data-modal-title="Reflection">
+          <img src="/assets/media/images/ray-tracer/chkpt5_img1.png">
+        </a>
+        <figcaption>
+          <h4>Reflection</h4>
+        </figcaption>
+      </figure>
+    </div>
   </section>
 
   <section>
