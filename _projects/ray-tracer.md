@@ -32,7 +32,7 @@ The project consists of seven basic checkpoints (the first was simply determinin
 
       <figure class="carousel-active">
         <a href="/assets/media/images/ray-tracer/chkpt2_img1.png"
-           class="frame_group" data-modal-group=".frame_group"
+           class="raytrace_group" data-modal-group=".raytrace_group"
            data-modal-title="Recreating a basic scene">
           <img src="/assets/media/images/ray-tracer/chkpt2_img1.png">
         </a>
@@ -43,7 +43,7 @@ The project consists of seven basic checkpoints (the first was simply determinin
 
       <figure>
         <a href="/assets/media/images/ray-tracer/chkpt2_img2.png"
-           class="frame_group" data-modal-group=".frame_group"
+           class="raytrace_group" data-modal-group=".raytrace_group"
            data-modal-title="With alternate camera angle">
           <img src="/assets/media/images/ray-tracer/chkpt2_img2.png">
         </a>
@@ -69,7 +69,7 @@ The project consists of seven basic checkpoints (the first was simply determinin
 
       <figure class="carousel-active">
         <a href="/assets/media/images/ray-tracer/chkpt3_img1.png"
-           class="phong_group" data-modal-group=".phong_group"
+           class="raytrace_group" data-modal-group=".raytrace_group"
            data-modal-title="Basic Phong Illumination">
           <img src="/assets/media/images/ray-tracer/chkpt3_img1.png">
         </a>
@@ -80,7 +80,7 @@ The project consists of seven basic checkpoints (the first was simply determinin
 
       <figure>
         <a href="/assets/media/images/ray-tracer/chkpt3_img2.png"
-           class="phong_group" data-modal-group=".phong_group"
+           class="raytrace_group" data-modal-group=".raytrace_group"
            data-modal-title="With supersampling x4">
           <img src="/assets/media/images/ray-tracer/chkpt3_img2.png">
         </a>
@@ -91,7 +91,7 @@ The project consists of seven basic checkpoints (the first was simply determinin
 
       <figure>
         <a href="/assets/media/images/ray-tracer/chkpt3_img3.png"
-           class="phong_group" data-modal-group=".phong_group"
+           class="raytrace_group" data-modal-group=".raytrace_group"
            data-modal-title="With supersampling x9">
           <img src="/assets/media/images/ray-tracer/chkpt3_img3.png">
         </a>
@@ -102,7 +102,7 @@ The project consists of seven basic checkpoints (the first was simply determinin
 
       <figure>
         <a href="/assets/media/images/ray-tracer/chkpt3_img4.png"
-           class="phong_group" data-modal-group=".phong_group"
+           class="raytrace_group" data-modal-group=".raytrace_group"
            data-modal-title="With supersampling x16">
           <img src="/assets/media/images/ray-tracer/chkpt3_img4.png">
         </a>
@@ -124,7 +124,7 @@ The project consists of seven basic checkpoints (the first was simply determinin
 
       <figure class="carousel-active">
         <a href="/assets/media/images/ray-tracer/chkpt4_img1.png"
-           class="frame_group" data-modal-group=".frame_group"
+           class="raytrace_group" data-modal-group=".raytrace_group"
            data-modal-title="Procedural checkerboard texture">
           <img src="/assets/media/images/ray-tracer/chkpt4_img1.png">
         </a>
@@ -144,7 +144,7 @@ The project consists of seven basic checkpoints (the first was simply determinin
 
       <figure class="carousel-active">
         <a href="/assets/media/images/ray-tracer/chkpt5_img1.png"
-           class="frame_group" data-modal-group=".frame_group"
+           class="raytrace_group" data-modal-group=".raytrace_group"
            data-modal-title="Reflection">
           <img src="/assets/media/images/ray-tracer/chkpt5_img1.png">
         </a>
