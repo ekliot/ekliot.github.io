@@ -3,152 +3,153 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width" />
-        <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans" rel="stylesheet">
-        <link rel="stylesheet" href="responsive.min.css">
-        <link rel="stylesheet" href="style.css">
+        <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans" rel="stylesheet" />
+        <link rel="stylesheet" href="style.css" />
         <script type="text/javascript" src="cards.js"></script>
         <title></title>
     </head>
-    <body><wrapper>
-        <index>
-            <a id="E" href="#">
-                <div id="E_mid"></div>
-                <div id="E_Spine"></div>
-                <div id="E_slabT"></div>
-                <div id="E_slabB"></div>
-                <div id="E_top"></div>
-                <div id="E_bottom"></div>
-            </a>
-            <guide></guide>
-        </index>
-        <div id="Decks">
-            <deck id="Root" data-title="root">
-                <card id="Root_Home" data-title="Elijah Kliot">
-                    <div class="header">
-                        <h2>Elijah Kliot</h2>
-                    </div>
-                    <div class="content">
-                        <p>I study Computer Science at the <a href="https://www.cs.rit.edu/" target="_blank">Rochester Institute of Technology</a>, with minors in Creative Writing and English.</p>
-                        <p>My mission is to explore software as a craft, weaving <a class="local" href="#Rennaisance_Intro">my passions</a> into the canvas of my work.</p>
-                        <p>Currently I am delving into the domain of interface development, while my studies focus on graphics and artificial intelligence.</p>
-                        <ul>
-                            <li><a class="local" href="#Root_Projects">My work</a></li>
-                            <li><a class="local" href="#Root_About">Who I am</a></li>
-                            <li><a class="local" href="#Root_Contact">How to reach me</a></li>
-                        </ul>
-                    </div>
-                </card>
-                <card id="Root_Projects" data-title="Projects">
-                    <div class="header">
-                        <h2>Projects <a target="_blank" class="repo-link" href="https://www.github.com/ekliot">
-                            <svg viewBox="0 0 30 30" aria-labelledby="brsi-evil-sc-github-title" id="si-evil-sc-github" style="height:1em;">
-                                <path fill-rule="evenodd" d="M15 0C6.7 0 0 6.7 0 15c0 6.6 4.3 12.2 10.3 14.2.8.1 1-.3 1-.7v-2.6c-4.2.9-5.1-2-5.1-2-.7-1.7-1.7-2.2-1.7-2.2-1.4-.9.1-.9.1-.9 1.5.1 2.3 1.5 2.3 1.5 1.3 2.3 3.5 1.6 4.4 1.2.1-1 .5-1.6 1-2-3.3-.4-6.8-1.7-6.8-7.4 0-1.6.6-3 1.5-4-.2-.4-.7-1.9.1-4 0 0 1.3-.4 4.1 1.5 1.2-.3 2.5-.5 3.8-.5 1.3 0 2.6.2 3.8.5 2.9-1.9 4.1-1.5 4.1-1.5.8 2.1.3 3.6.1 4 1 1 1.5 2.4 1.5 4 0 5.8-3.5 7-6.8 7.4.5.5 1 1.4 1 2.8v4.1c0 .4.3.9 1 .7 6-2 10.2-7.6 10.2-14.2C30 6.7 23.3 0 15 0z" clip-rule="evenodd"></path>
-                            </svg>
-                        </a></h2>
-                    </div>
-                    <div class="content">
-                        <ul id="ProjectList">
-                            <li>
-                                <h3><a class="local" href="#RayTracer_About">Ray Tracer</a> (C++)</h3>
-                                <p>A 3D ray tracing renderer</p>
-                            </li>
-                            <li>
-                                <h3><a target="_blank" href="https://gl-ph.com">gl-ph</a> (Web)</h3>
-                                <p>Software development for RIT's digital literature journal</p>
-                            </li>
-                            <li>
-                                <h3><a>Conangen</a> (Ruby on Rails)</h3>
-                                <p>A character-generator for the Conan tabletop RPG by Modiphius</p>
-                            </li>
-                            <li>
-                                <h3><a>Digital Literature</a> (Multi)</h3>
-                                <p>Forays into the world of digital literature</p>
-                            </li>
-                        </ul>
-                    </div>
-                </card>
-                <card id="Root_Contact" data-title="Contact">
-                    <div class="header">
-                        <h2>Contact Me</h2>
-                    </div>
-                    <div class="content">
-                        <p>You can email me<span id="NoJS">, but unfortunately you'll need to enable Javascript</span>.</p>
-                        <p>Take a look at my work on <a target="_blank" href="https://www.github.com/ekliot">Github</a>.</p>
-                        <p>I can also be found on <a target="_blank" href="https://www.twitter.com/ekliot">Twitter</a>, and you can connect with me on <a target="_blank" href="https://www.linkedin.com/in/ekliot">LinkedIn</a>.</p>
-                        <p>My resume is available <a target="_blank" href="./resume.pdf">here</a>.</p>
-                    </div>
-                </card>
-                <card id="Root_About" data-title="About">
-                    <div class="header">
-                        <h2>About Me</h2>
-                    </div>
-                    <div class="content">
-                        <p>London-born and Chicago raised, forged by the long winters of Rochester, NY.</p>
-                        <p>My highest values – when it comes to my work and anything I do – are authenticity, creativity, and functionality.</p>
-                        <p>Outside of my career – professionally and academically – I spend much of my time running tabletop role playing games, bouldering, and practicing <a href="https://www.hemaalliance.com/">HEMA</a>.</p>
-                        <p>The people that inspire me are
-                            <a target="_blank" href="https://en.wikipedia.org/wiki/Robert_E._Howard">Robert E Howard</a>,
-                            <a target="_blank" href="https://twitter.com/id_aa_carmack">John Carmack</a>, and
-                            <a target="_blank" href="https://twitter.com/EdmundMcMillen">Edmund McMillen</a>.
-                        <p>Visit a <a>friend</a>.</p>
-                        <p>If you have any questions, reach out to me <a href="#Root_Contact" class=".local">personally</a>, or glance my <a target="_blank" href="https://www.twitter.com/ekliot">Twitter</a> account.</p>
-                    </div>
-                </card>
-            </deck>
-            <deck id="Rennaisance">
-            </deck>
-            <deck id="Projects">
-            </deck>
-            <deck id="RayTracer" data-title="raytracer">
-                <card id="RayTracer_About" data-title="About">
-                    <div class="header">
-                        <h2>C++ Ray Tracer</h2>
-                        <h4 style="margin-top: -0.5rem;">By Chris Lemelin and Elijah Kliot</h2>
-                    </div>
-                    <div class="content">
-                        <p>This is a semester-long project for the CSCI 711 Global Illumination class at RIT with the goal of reproducing the following image:</p>
-                        <img src="assets/images/ray-tracer/ray-tracer_goal.jpg"></img>
-                    </div>
-                </card>
-                <card id="RayTracer_Check2" data-title="Check 2">
-                    <div class="header">
-                        <h2>Checkpoint 2</h2>
-                        <h4 style="margin-top: -0.5rem;">Ray Tracing Framework</h2>
-                    </div>
-                    <div class="content">
-                        <img src="assets/images/ray-tracer/ray-tracer_goal.jpg"></img>
-                    </div>
-                </card>
-                <card id="RayTracer_Check3" data-title="Check 3">
-                    <div class="header">
-                        <h2>Checkpoint 3</h2>
-                        <h4 style="margin-top: -0.5rem;">Phong Illumination</h2>
-                    </div>
-                    <div class="content">
-                        <img src="assets/images/ray-tracer/ray-tracer_goal.jpg"></img>
-                    </div>
-                </card>
-                <card id="RayTracer_Check4" data-title="Check 4">
-                    <div class="header">
-                        <h2>Checkpoint 4</h2>
-                        <h4 style="margin-top: -0.5rem;">Procedural Textures</h2>
-                    </div>
-                    <div class="content">
-                        <img src="assets/images/ray-tracer/ray-tracer_goal.jpg"></img>
-                    </div>
-                </card>
-                <card id="RayTracer_Check5" data-title="Check 5">
-                    <div class="header">
-                        <h2>Checkpoint 5</h2>
-                        <h4 style="margin-top: -0.5rem;">Reflection</h2>
-                    </div>
-                    <div class="content">
-                        <img src="assets/images/ray-tracer/ray-tracer_goal.jpg"></img>
-                    </div>
-                </card>
-            </deck>
-        </div>
-        <hand></hand>
-        <buffer></buffer>
-    </wrapper></body>
+    <body>
+        <wrapper>
+            <index>
+                <a id="E" href="#">
+                    <div id="E_mid"></div>
+                    <div id="E_Spine"></div>
+                    <div id="E_slabT"></div>
+                    <div id="E_slabB"></div>
+                    <div id="E_top"></div>
+                    <div id="E_bottom"></div>
+                </a>
+                <guide></guide>
+            </index>
+            <div id="Decks">
+                <deck id="Root" data-title="root">
+                    <card id="Root_Home" data-title="Elijah Kliot">
+                        <div class="header">
+                            <h2>Elijah Kliot</h2>
+                        </div>
+                        <div class="content">
+                            <p>I study Computer Science at the <a href="https://www.cs.rit.edu/" target="_blank">Rochester Institute of Technology</a>, with minors in Creative Writing and English.</p>
+                            <p>My mission is to explore software as a craft, weaving <a class="local" href="#Rennaisance_Intro">my passions</a> into the canvas of my work.</p>
+                            <p>Currently I am delving into the domain of interface development, while my studies focus on graphics and artificial intelligence.</p>
+                            <ul>
+                                <li><a class="local" href="#Root_Projects">My work</a></li>
+                                <li><a class="local" href="#Root_About">Who I am</a></li>
+                                <li><a class="local" href="#Root_Contact">How to reach me</a></li>
+                            </ul>
+                        </div>
+                    </card>
+                    <card id="Root_Projects" data-title="Projects">
+                        <div class="header">
+                            <h2>Projects <a target="_blank" class="repo-link" href="https://www.github.com/ekliot">
+                                <svg viewBox="0 0 30 30" aria-labelledby="brsi-evil-sc-github-title" id="si-evil-sc-github" style="height:1em;">
+                                    <path fill-rule="evenodd" d="M15 0C6.7 0 0 6.7 0 15c0 6.6 4.3 12.2 10.3 14.2.8.1 1-.3 1-.7v-2.6c-4.2.9-5.1-2-5.1-2-.7-1.7-1.7-2.2-1.7-2.2-1.4-.9.1-.9.1-.9 1.5.1 2.3 1.5 2.3 1.5 1.3 2.3 3.5 1.6 4.4 1.2.1-1 .5-1.6 1-2-3.3-.4-6.8-1.7-6.8-7.4 0-1.6.6-3 1.5-4-.2-.4-.7-1.9.1-4 0 0 1.3-.4 4.1 1.5 1.2-.3 2.5-.5 3.8-.5 1.3 0 2.6.2 3.8.5 2.9-1.9 4.1-1.5 4.1-1.5.8 2.1.3 3.6.1 4 1 1 1.5 2.4 1.5 4 0 5.8-3.5 7-6.8 7.4.5.5 1 1.4 1 2.8v4.1c0 .4.3.9 1 .7 6-2 10.2-7.6 10.2-14.2C30 6.7 23.3 0 15 0z" clip-rule="evenodd"></path>
+                                </svg>
+                            </a></h2>
+                        </div>
+                        <div class="content">
+                            <ul id="ProjectList">
+                                <li>
+                                    <h3><a class="local" href="#RayTracer_About">Ray Tracer</a> (C++)</h3>
+                                    <p>A 3D ray tracing renderer</p>
+                                </li>
+                                <li>
+                                    <h3><a target="_blank" href="https://gl-ph.com">gl-ph</a> (Web)</h3>
+                                    <p>Software development for RIT's digital literature journal</p>
+                                </li>
+                                <li>
+                                    <h3><a>Conangen</a> (Ruby on Rails)</h3>
+                                    <p>A character-generator for the Conan tabletop RPG by Modiphius</p>
+                                </li>
+                                <li>
+                                    <h3><a>Digital Literature</a> (Multi)</h3>
+                                    <p>Forays into the world of digital literature</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </card>
+                    <card id="Root_Contact" data-title="Contact">
+                        <div class="header">
+                            <h2>Contact Me</h2>
+                        </div>
+                        <div class="content">
+                            <p>You can email me<span id="NoJS">, but unfortunately you'll need to enable Javascript</span>.</p>
+                            <p>Take a look at my work on <a target="_blank" href="https://www.github.com/ekliot">Github</a>.</p>
+                            <p>I can also be found on <a target="_blank" href="https://www.twitter.com/ekliot">Twitter</a>, and you can connect with me on <a target="_blank" href="https://www.linkedin.com/in/ekliot">LinkedIn</a>.</p>
+                            <p>My resume is available <a target="_blank" href="./resume.pdf">here</a>.</p>
+                        </div>
+                    </card>
+                    <card id="Root_About" data-title="About">
+                        <div class="header">
+                            <h2>About Me</h2>
+                        </div>
+                        <div class="content">
+                            <p>London-born and Chicago raised, forged by the long winters of Rochester, NY.</p>
+                            <p>My highest values – when it comes to my work and anything I do – are authenticity, creativity, and functionality.</p>
+                            <p>Outside of my career – professionally and academically – I spend much of my time running tabletop role playing games, bouldering, and practicing <a href="https://www.hemaalliance.com/">HEMA</a>.</p>
+                            <p>The people that inspire me are
+                                <a target="_blank" href="https://en.wikipedia.org/wiki/Robert_E._Howard">Robert E Howard</a>,
+                                <a target="_blank" href="https://twitter.com/id_aa_carmack">John Carmack</a>, and
+                                <a target="_blank" href="https://twitter.com/EdmundMcMillen">Edmund McMillen</a>.
+                            <p>Visit a <a>friend</a>.</p>
+                            <p>If you have any questions, reach out to me <a href="#Root_Contact" class=".local">personally</a>, or glance my <a target="_blank" href="https://www.twitter.com/ekliot">Twitter</a> account.</p>
+                        </div>
+                    </card>
+                </deck>
+                <deck id="Rennaisance">
+                </deck>
+                <deck id="Projects">
+                </deck>
+                <deck id="RayTracer" data-title="raytracer">
+                    <card id="RayTracer_About" data-title="About">
+                        <div class="header">
+                            <h2>C++ Ray Tracer</h2>
+                            <h4 style="margin-top: -0.5rem;">By Chris Lemelin and Elijah Kliot</h2>
+                        </div>
+                        <div class="content">
+                            <p>This is a semester-long project for the CSCI 711 Global Illumination class at RIT with the goal of reproducing the following image:</p>
+                            <img src="assets/images/ray-tracer/ray-tracer_goal.jpg"></img>
+                        </div>
+                    </card>
+                    <card id="RayTracer_Check2" data-title="Check 2">
+                        <div class="header">
+                            <h2>Checkpoint 2</h2>
+                            <h4 style="margin-top: -0.5rem;">Ray Tracing Framework</h2>
+                        </div>
+                        <div class="content">
+                            <img src="assets/images/ray-tracer/ray-tracer_goal.jpg"></img>
+                        </div>
+                    </card>
+                    <card id="RayTracer_Check3" data-title="Check 3">
+                        <div class="header">
+                            <h2>Checkpoint 3</h2>
+                            <h4 style="margin-top: -0.5rem;">Phong Illumination</h2>
+                        </div>
+                        <div class="content">
+                            <img src="assets/images/ray-tracer/ray-tracer_goal.jpg"></img>
+                        </div>
+                    </card>
+                    <card id="RayTracer_Check4" data-title="Check 4">
+                        <div class="header">
+                            <h2>Checkpoint 4</h2>
+                            <h4 style="margin-top: -0.5rem;">Procedural Textures</h2>
+                        </div>
+                        <div class="content">
+                            <img src="assets/images/ray-tracer/ray-tracer_goal.jpg"></img>
+                        </div>
+                    </card>
+                    <card id="RayTracer_Check5" data-title="Check 5">
+                        <div class="header">
+                            <h2>Checkpoint 5</h2>
+                            <h4 style="margin-top: -0.5rem;">Reflection</h2>
+                        </div>
+                        <div class="content">
+                            <img src="assets/images/ray-tracer/ray-tracer_goal.jpg"></img>
+                        </div>
+                    </card>
+                </deck>
+            </div>
+            <hand></hand>
+            <buffer></buffer>
+        </wrapper>
+    </body>
 </html>

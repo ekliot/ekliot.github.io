@@ -86,7 +86,6 @@
 
     set_active(idx) {
       var i, j, k, l, last, ref1, ref2, ref3, ref4, ref5;
-      console.log(idx);
       if (idx === this.active) {
         return;
       }
@@ -451,7 +450,6 @@
     // sets the deck to a card index and updates the idx
     go_to(card_idx) {
       var scroll_cb;
-      console.log(`got ${card_idx}`);
       scroll_cb = this.active.set_active(parseInt(card_idx));
       return this.update_guide();
     }
