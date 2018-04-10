@@ -17,8 +17,6 @@ wrapper {
   align-items: center;
   align-content: center;
 
-  /* overflow: hidden; */
-
   font-family: 'IBM Plex Sans', sans-serif;
 }
 
@@ -47,9 +45,9 @@ a:active, a:focus {
   color: white;
 }
 
-/* ************** *\
-   Deck and Cards
-\* ************** */
+/******************\
+ * Deck and Cards *
+\******************/
 
 #Decks {
   display: none;
@@ -343,11 +341,11 @@ guide > item.active:hover {
 
     top: 0;
 
-    background:         linear-gradient( white 90%, #00000000 100% );
-    background:      -o-linear-gradient( white 90%, #00000000 100% ); /* Opera 11.10 */
-    background:     -ms-linear-gradient( white 90%, #00000000 100% ); /* IE10 */
-    background:    -moz-linear-gradient( white 90%, #00000000 100% ); /* FF 3.6+ */
-    background: -webkit-linear-gradient( white 90%, #00000000 100% ); /* Safari 5.1+, Chrome 10+ */
+    background:         linear-gradient( 270deg, white 95%, #00000000 100% );
+    background:      -o-linear-gradient( 270deg, white 95%, #00000000 100% ); /* Opera 11.10 */
+    background:     -ms-linear-gradient( 270deg, white 95%, #00000000 100% ); /* IE10 */
+    background:    -moz-linear-gradient( 270deg, white 95%, #00000000 100% ); /* FF 3.6+ */
+    background: -webkit-linear-gradient( 270deg, white 95%, #00000000 100% ); /* Safari 5.1+, Chrome 10+ */
 
     flex-direction: row;
     flex-flow: row;

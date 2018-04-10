@@ -278,6 +278,7 @@
       for (k = 0, len1 = ref2.length; k < len1; k++) {
         anchor = ref2[k];
         anchor.addEventListener('click', ((ev) => {
+          ev.preventDefault();
           return this.parse_href(ev.target.href);
         }), false);
       }
@@ -397,6 +398,7 @@
       if (!this.touch_x || !this.touch_y) {
         return;
       }
+      ev.preventDefault();
       // console.log "last touch at (#{@touch_x}, #{@touch_y})"
 
       // console.log ev
@@ -499,6 +501,7 @@
 
     parse_href(href) {
       var c_ref, deck_div, deck_obj, deck_title, idx, ref;
+      console.log(href);
       ref = href.split('#')[1];
       deck_title = ref.split('_')[0];
       deck_div = document.getElementById(deck_title);
