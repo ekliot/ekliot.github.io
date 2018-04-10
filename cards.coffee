@@ -204,7 +204,6 @@ class Board
       anchor.onclick = (ev) =>
         @parse_href ev.target.href
 
-
     @logo.onclick = () => @set_active 'root'
 
   #
@@ -278,15 +277,13 @@ class Board
 
     for item, i in @guide.children
       item.querySelector( 'span' ).addEventListener 'click', ((ev) =>
-        console.log ev.target
         item = ev.target.parentNode
         @go_to item.dataset.idx
       ), false
-      item.addEventListener 'click', ((ev) =>
-        console.log ev.target
-        item = ev.target
-        @go_to item.dataset.idx
-      ), true
+      # item.addEventListener 'click', ((ev) =>
+      #   item = ev.target
+      #   @go_to item.dataset.idx
+      # ), true
 
   #
   # CONTROL METHODS
@@ -358,7 +355,7 @@ class Board
 
   # sets the deck to a card index and updates the idx
   go_to: ( card_idx ) ->
-    scroll_cb = @active.set_active parseInt card_idx
+    scroll_cb = @active.set_active( parseInt card_idx )
     @update_guide()
 
   parse_href: ( href ) ->

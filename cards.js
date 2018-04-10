@@ -86,6 +86,7 @@
 
     set_active(idx) {
       var i, j, k, l, last, ref1, ref2, ref3, ref4, ref5;
+      console.log(idx);
       if (idx === this.active) {
         return;
       }
@@ -188,7 +189,11 @@
 
   Board = class Board {
     constructor(targ, idx) {
-      
+      // item.addEventListener 'click', ((ev) =>
+      //   item = ev.target
+      //   @go_to item.dataset.idx
+      // ), true
+
       // CONTROL METHODS
 
       // # TOUCH EVENTS
@@ -372,16 +377,10 @@
       results = [];
       for (i = k = 0, len1 = ref2.length; k < len1; i = ++k) {
         item = ref2[i];
-        item.querySelector('span').addEventListener('click', ((ev) => {
-          console.log(ev.target);
+        results.push(item.querySelector('span').addEventListener('click', ((ev) => {
           item = ev.target.parentNode;
           return this.go_to(item.dataset.idx);
-        }), false);
-        results.push(item.addEventListener('click', ((ev) => {
-          console.log(ev.target);
-          item = ev.target;
-          return this.go_to(item.dataset.idx);
-        }), true));
+        }), false));
       }
       return results;
     }
@@ -452,6 +451,7 @@
     // sets the deck to a card index and updates the idx
     go_to(card_idx) {
       var scroll_cb;
+      console.log(`got ${card_idx}`);
       scroll_cb = this.active.set_active(parseInt(card_idx));
       return this.update_guide();
     }
