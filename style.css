@@ -1,4 +1,4 @@
-html, body, container {
+html, body, wrapper {
   width: 100%;
   height: 100%;
 
@@ -6,11 +6,11 @@ html, body, container {
   padding: 0;
 }
 
-container {
+wrapper {
   overflow: hidden;
 }
 
-container {
+wrapper {
   display: flex;
 
   flex-flow: row;
@@ -316,7 +316,7 @@ guide > item.active:hover {
 }
 
 @media screen and (max-width: 600px) {
-  container {
+  wrapper {
     flex-flow: column;
     flex-direction: column;
     align-content: center;
