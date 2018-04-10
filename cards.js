@@ -22,16 +22,19 @@
     
     // ANIMATION
 
-    swipe_up() {
-      var div, rem;
+    swipe(dir = 'up') {
+      var div, rem, rot, top;
+      console.log(dir);
       rem = parseFloat(getComputedStyle(document.documentElement).fontSize);
       div = this.get_div();
+      top = dir === 'up' ? -120 : 120;
+      rot = dir === 'up' ? 10 : -10;
       div.classList.add("swiped");
-      div.style.top = "-120%";
+      div.style.top = `${top}%`;
       div.style.left = `-${rem}`;
-      div.style.transform = "rotate(10deg)";
-      div.style["-moz-transform"] = "rotate(10deg)";
-      div.style["-webkit-transform"] = "rotate(10deg)";
+      div.style.transform = `rotate(${rot}deg)`;
+      div.style["-moz-transform"] = `rotate(${rot}deg)`;
+      div.style["-webkit-transform"] = `rotate(${rot}deg)`;
       return window.setTimeout((() => {
         return this.set_z(0);
       }), 500);
@@ -84,30 +87,34 @@
       return this.deck[this.active];
     }
 
-    set_active(idx) {
+    set_active(idx, dir = 'def') {
       var i, j, k, l, last, ref1, ref2, ref3, ref4, ref5;
       if (idx === this.active) {
         return;
       }
       last = this.active;
       this.active = idx;
+      console.log(dir);
       // dumb ifelse monstrosity...
 
       // if we are scrolling backwards...
       if (last > this.active) {
+        console.log(1);
         for (i = j = ref1 = last, ref2 = this.size; ref1 <= ref2 ? j < ref2 : j > ref2; i = ref1 <= ref2 ? ++j : --j) {
-          this.deck[i].swipe_up();
+          this.deck[i].swipe(dir === 'def' ? 'up' : dir);
         }
         // and, if the next active card is not the first card...
         if (this.active !== 0) {
+          console.log(2);
           for (i = k = 0, ref3 = this.active; 0 <= ref3 ? k < ref3 : k > ref3; i = 0 <= ref3 ? ++k : --k) {
-            this.deck[i].swipe_up();
+            this.deck[i].swipe(dir === 'def' ? 'up' : dir);
           }
         }
       } else {
         // otherwise
+        console.log(3);
         for (i = l = ref4 = last, ref5 = this.active; ref4 <= ref5 ? l < ref5 : l > ref5; i = ref4 <= ref5 ? ++l : --l) {
-          this.deck[i].swipe_up();
+          this.deck[i].swipe(dir === 'def' ? 'up' : dir);
         }
       }
       return window.setTimeout((() => {
@@ -116,11 +123,11 @@
     }
 
     next_card() {
-      return this.set_active(this.active === this.size - 1 ? 0 : this.active + 1);
+      return this.set_active((this.active === this.size - 1 ? 0 : this.active + 1), 'up');
     }
 
     last_card() {
-      return this.set_active(this.active === 0 ? this.size - 1 : this.active - 1);
+      return this.set_active((this.active === 0 ? this.size - 1 : this.active - 1), 'down');
     }
 
     enter(target) {
@@ -197,8 +204,8 @@
 
       // # TOUCH EVENTS
 
-      this.handle_touch_move = this.handle_touch_move.bind(this);
-      this.handle_touch_start = this.handle_touch_start.bind(this);
+      this.handle_touch_up = this.handle_touch_up.bind(this);
+      this.handle_touch_down = this.handle_touch_down.bind(this);
       
       // # SCROLLING
 
@@ -265,8 +272,8 @@
           }
         };
         // TODO touch listeners
-        card.addEventListener('touchstart', this.handle_touch_start, false);
-        card.addEventListener('touchmove', this.handle_touch_move, false);
+        card.addEventListener('touchstart', this.handle_touch_down, false);
+        card.addEventListener('touchend', this.handle_touch_up, false);
       }
       ref2 = document.querySelectorAll("a.local");
       // set listeners for anchors
@@ -277,7 +284,7 @@
         }), false);
       }
       return this.logo.addEventListener('click', ((ev) => {
-        return this.parse_href(this.logo.href);
+        return this.set_active('root');
       }));
     }
 
@@ -290,7 +297,7 @@
 
     // sets a deck as active and manages entrance/exiting
     set_active(name) {
-      var delay;
+      var delay, title;
       if (!this.decks[name]) {
         return;
       }
@@ -306,6 +313,8 @@
       }
       // activate the requested deck
       this.active = this.decks[name];
+      title = this.active.div.id;
+      document.title = this.title + (title === 'Root' ? '' : ` // ${title}`);
       // draw it
       return window.setTimeout((() => {
         return this.build_deck();
@@ -373,11 +382,12 @@
         card = ref1[idx];
         this.guide.innerHTML += `<item data-idx="${idx}"><span>${card.title}</span></item>`;
       }
-      ref2 = this.guide.children;
+      ref2 = document.querySelectorAll('item > span');
       results = [];
       for (i = k = 0, len1 = ref2.length; k < len1; i = ++k) {
         item = ref2[i];
-        results.push(item.querySelector('span').addEventListener('click', ((ev) => {
+        results.push(item.addEventListener('click', ((ev) => {
+          console.log(new Date().getTime());
           item = ev.target.parentNode;
           return this.go_to(item.dataset.idx);
         }), false));
@@ -385,12 +395,33 @@
       return results;
     }
 
-    handle_touch_move(ev) {
-      return console.log(this);
+    handle_touch_up(ev) {
+      var dx, dy, up_x, up_y;
+      if (!this.touch_x || !this.touch_y) {
+        return;
+      }
+      console.log(`last touch at (${this.touch_x}, ${this.touch_y})`);
+      console.log(ev);
+      up_x = ev.changedTouches[0].clientX;
+      up_y = ev.changedTouches[0].clientY;
+      dx = this.touch_x - up_x;
+      dy = this.touch_y - up_y;
+      // we only care about swiping up or down
+      if (Math.abs(dy) > Math.abs(dx)) {
+        if (dy > 0) {
+          this.active.next_card();
+        } else {
+          this.active.last_card();
+        }
+        return this.update_guide();
+      }
     }
 
-    handle_touch_start(ev) {
-      return console.log(this);
+    handle_touch_down(ev) {
+      this.touch_x = ev.touches[0].clientX;
+      this.touch_y = ev.touches[0].clientY;
+      console.log(ev.touches);
+      return console.log(`touchdown at (${this.touch_x}, ${this.touch_y})`);
     }
 
     // set the idx elements to match the active deck configuration
@@ -426,10 +457,10 @@
         this.scroll_buff += (ev.deltaY < 0 ? -1 : 1);
         if (this.scroll_thresh < Math.abs(this.scroll_buff)) {
           // up or down?
-          if (this.scroll_buff < 0) {
-            this.active.last_card();
-          } else {
+          if (this.scroll_buff > 0) {
             this.active.next_card();
+          } else {
+            this.active.last_card();
           }
           // update the index to match the current selection
           this.update_guide();
@@ -456,7 +487,7 @@
     }
 
     parse_href(href) {
-      var c_ref, deck_div, deck_obj, deck_title, idx, ref, title;
+      var c_ref, deck_div, deck_obj, deck_title, idx, ref;
       ref = href.split('#')[1];
       deck_title = ref.split('_')[0];
       deck_div = document.getElementById(deck_title);
@@ -464,8 +495,6 @@
       if (deck_obj != null) {
         c_ref = document.getElementById(ref);
         idx = c_ref.dataset.idx;
-        title = deck_div.id;
-        document.title = this.title + (title === 'Root' ? '' : ` // ${title}`);
         if (deck_obj === this.active) {
           return this.go_to(idx);
         } else {

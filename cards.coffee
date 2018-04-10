@@ -16,15 +16,20 @@ class Card
   # ANIMATION
   #
 
-  swipe_up: () ->
+  swipe: ( dir='up' ) ->
+
+    console.log dir
     rem = parseFloat getComputedStyle( document.documentElement ).fontSize
     div = @get_div()
+    top = if dir is 'up' then -120 else 120
+    rot = if dir is 'up' then 10 else -10
+
     div.classList.add "swiped"
-    div.style.top = "-120%"
+    div.style.top = "#{top}%"
     div.style.left = "-#{rem}"
-    div.style.transform = "rotate(10deg)"
-    div.style["-moz-transform"] = "rotate(10deg)"
-    div.style["-webkit-transform"] = "rotate(10deg)"
+    div.style.transform = "rotate(#{rot}deg)"
+    div.style["-moz-transform"] = "rotate(#{rot}deg)"
+    div.style["-webkit-transform"] = "rotate(#{rot}deg)"
     window.setTimeout( (
       () => @set_z( 0 )
     ), 500 )
@@ -64,35 +69,40 @@ class Deck
   get_active: () ->
     @deck[@active]
 
-  set_active: ( idx ) ->
+  set_active: ( idx, dir='def' ) ->
     if idx is @active then return
     last = @active
     @active = idx
+
+    console.log dir
 
     # dumb ifelse monstrosity...
 
     # if we are scrolling backwards...
     if last > @active
+      console.log 1
       for i in [last...@size]
-        @deck[i].swipe_up()
+        @deck[i].swipe( if dir is 'def' then 'up' else dir )
       # and, if the next active card is not the first card...
       if @active != 0
+        console.log 2
         for i in [0...@active]
-          @deck[i].swipe_up()
+          @deck[i].swipe( if dir is 'def' then 'up' else dir )
     # otherwise
     else
+      console.log 3
       for i in [last...@active]
-        @deck[i].swipe_up()
+        @deck[i].swipe( if dir is 'def' then 'up' else dir )
 
     window.setTimeout( (() =>
       @update_layout()
     ), 500 )
 
   next_card: () ->
-    @set_active( if @active is @size - 1 then 0 else @active + 1 )
+    @set_active( (if @active is @size - 1 then 0 else @active + 1), 'up' )
 
   last_card: () ->
-    @set_active( if @active is 0 then @size - 1 else @active - 1 )
+    @set_active( (if @active is 0 then @size - 1 else @active - 1), 'down' )
 
   enter: ( target ) ->
     for i in [@size-1..0] by -1
@@ -198,15 +208,15 @@ class Board
           @go_to card.dataset.idx
 
       # TODO touch listeners
-      card.addEventListener 'touchstart', @handle_touch_start, false
-      card.addEventListener 'touchmove', @handle_touch_move, false
+      card.addEventListener 'touchstart', @handle_touch_down, false
+      card.addEventListener 'touchend', @handle_touch_up, false
 
     # set listeners for anchors
     for anchor in document.querySelectorAll "a.local"
       anchor.addEventListener 'click', ((ev) =>
         @parse_href ev.target.href), false
 
-    @logo.addEventListener 'click', ((ev) => @parse_href @logo.href)
+    @logo.addEventListener 'click', ((ev) => @set_active 'root')
 
   #
   # SETUP
@@ -232,6 +242,9 @@ class Board
 
     # activate the requested deck
     @active = @decks[name]
+
+    title = @active.div.id
+    document.title = @title + if title is 'Root' then '' else " // #{title}"
 
     # draw it
     window.setTimeout( (() => @build_deck()), delay )
@@ -277,8 +290,9 @@ class Board
     for card, idx in @active.deck
       @guide.innerHTML += "<item data-idx=\"#{idx}\"><span>#{card.title}</span></item>"
 
-    for item, i in @guide.children
-      item.querySelector( 'span' ).addEventListener 'click', ((ev) =>
+    for item, i in document.querySelectorAll 'item > span'
+      item.addEventListener 'click', ((ev) =>
+        console.log new Date().getTime()
         item = ev.target.parentNode
         @go_to item.dataset.idx
       ), false
@@ -295,11 +309,34 @@ class Board
   # # TOUCH EVENTS
   #
 
-  handle_touch_move: (ev) =>
-    console.log this
+  handle_touch_up: (ev) =>
+    if (!@touch_x or !@touch_y) then return
 
-  handle_touch_start: (ev) =>
-    console.log this
+    console.log "last touch at (#{@touch_x}, #{@touch_y})"
+
+    console.log ev
+
+    up_x = ev.changedTouches[0].clientX
+    up_y = ev.changedTouches[0].clientY
+
+    dx = @touch_x - up_x
+    dy = @touch_y - up_y
+
+    # we only care about swiping up or down
+    if Math.abs( dy ) > Math.abs( dx )
+      if dy > 0
+        @active.next_card()
+      else
+        @active.last_card()
+
+      @update_guide()
+
+  handle_touch_down: (ev) =>
+    @touch_x = ev.touches[0].clientX
+    @touch_y = ev.touches[0].clientY
+    console.log ev.touches
+
+    console.log "touchdown at (#{@touch_x}, #{@touch_y})"
 
   # set the idx elements to match the active deck configuration
   update_guide: () ->
@@ -334,10 +371,10 @@ class Board
 
       if @scroll_thresh < Math.abs @scroll_buff
         # up or down?
-        if @scroll_buff < 0
-          @active.last_card()
-        else
+        if @scroll_buff > 0
           @active.next_card()
+        else
+          @active.last_card()
 
         # update the index to match the current selection
         @update_guide()
@@ -370,8 +407,6 @@ class Board
     if deck_obj?
       c_ref = document.getElementById ref
       idx = c_ref.dataset.idx
-      title = deck_div.id
-      document.title = @title + if title is 'Root' then '' else " // #{title}"
       if deck_obj is @active
         @go_to idx
       else
