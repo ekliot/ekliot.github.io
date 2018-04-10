@@ -1,14 +1,16 @@
-html, body {
+html, body, container {
   width: 100%;
   height: 100%;
 
   margin: 0;
   padding: 0;
+}
 
+container {
   overflow: hidden;
 }
 
-body {
+container {
   display: flex;
 
   flex-flow: row;
@@ -16,6 +18,8 @@ body {
   justify-content: center;
   align-items: center;
   align-content: center;
+
+  overflow: hidden;
 
   font-family: 'IBM Plex Sans', sans-serif;
 }
@@ -312,11 +316,13 @@ guide > item.active:hover {
 }
 
 @media screen and (max-width: 600px) {
-  body {
+  container {
     flex-flow: column;
     flex-direction: column;
     align-content: center;
     align-items: center;
+
+    overflow: hidden;
   }
 
   html {
