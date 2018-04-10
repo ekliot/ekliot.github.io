@@ -413,8 +413,12 @@ class Board
     deck_obj = @decks[deck_div.dataset.title]
 
     if deck_obj?
-      c_ref = document.getElementById ref
-      idx = c_ref.dataset.idx
+      if ref.split( '_' ).length is 1
+        idx = 0
+      else
+        c_ref = document.getElementById ref
+        idx = c_ref.dataset.idx
+
       if deck_obj is @active
         @go_to idx
       else
@@ -434,12 +438,17 @@ window.onload = () ->
   raytrace_div = document.getElementById 'RayTracer'
   raytrace_deck = new Deck "raytracer", raytrace_div
 
+  # DigitalLiterature deck
+  diglit_div = document.getElementById 'DigitalLiterature'
+  diglit_deck = new Deck "diglit", diglit_div
+
   # make the board
   board = new Board hand, idx
 
   # add the root deck
   board.add_deck root_deck
   board.add_deck raytrace_deck
+  board.add_deck diglit_deck
   # TODO add more decks
 
   # initialize the Board

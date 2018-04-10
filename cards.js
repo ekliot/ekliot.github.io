@@ -278,7 +278,6 @@
       for (k = 0, len1 = ref2.length; k < len1; k++) {
         anchor = ref2[k];
         anchor.addEventListener('click', ((ev) => {
-          ev.preventDefault();
           return this.parse_href(ev.target.href);
         }), false);
       }
@@ -501,14 +500,17 @@
 
     parse_href(href) {
       var c_ref, deck_div, deck_obj, deck_title, idx, ref;
-      console.log(href);
       ref = href.split('#')[1];
       deck_title = ref.split('_')[0];
       deck_div = document.getElementById(deck_title);
       deck_obj = this.decks[deck_div.dataset.title];
       if (deck_obj != null) {
-        c_ref = document.getElementById(ref);
-        idx = c_ref.dataset.idx;
+        if (ref.split('_').length === 1) {
+          idx = 0;
+        } else {
+          c_ref = document.getElementById(ref);
+          idx = c_ref.dataset.idx;
+        }
         if (deck_obj === this.active) {
           return this.go_to(idx);
         } else {
@@ -523,7 +525,7 @@
   };
 
   window.onload = function() {
-    var board, hand, href, idx, mail, name, raytrace_deck, raytrace_div, root_deck, root_div, url;
+    var board, diglit_deck, diglit_div, hand, href, idx, mail, name, raytrace_deck, raytrace_div, root_deck, root_div, url;
     // make base elements for the board
     hand = document.querySelector('hand');
     idx = document.querySelector('index');
@@ -533,11 +535,15 @@
     // RayTracing deck
     raytrace_div = document.getElementById('RayTracer');
     raytrace_deck = new Deck("raytracer", raytrace_div);
+    // DigitalLiterature deck
+    diglit_div = document.getElementById('DigitalLiterature');
+    diglit_deck = new Deck("diglit", diglit_div);
     // make the board
     board = new Board(hand, idx);
     // add the root deck
     board.add_deck(root_deck);
     board.add_deck(raytrace_deck);
+    board.add_deck(diglit_deck);
     // TODO add more decks
 
     // initialize the Board
