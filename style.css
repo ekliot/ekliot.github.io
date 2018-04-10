@@ -1,0 +1,386 @@
+html {
+  width: 100%;
+  height: 100%;
+
+  overflow: hidden;
+}
+
+body {
+  display: flex;
+
+  flex-flow: row;
+
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+
+  width: 100%;
+  height: 100%;
+
+  margin: 0;
+  padding: 0;
+
+  font-family: 'Cantarell', sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 2px solid black;
+}
+
+a:hover {
+  border-bottom-style: dashed;
+}
+
+a:active, a:focus {
+  outline: 0;
+  -moz-outline-style: none
+}
+
+::selection {
+  background: #000000;
+  color: white;
+}
+
+::-moz-selection {
+  background: #000000;
+  color: white;
+}
+
+#Decks {
+  display: none;
+}
+
+buffer {
+  flex-grow: 1;
+}
+
+hand {
+  position: relative;
+
+  width: 90%;
+  height: 70%;
+
+  flex-grow: 0;
+
+  max-width:  450px;
+  max-height: 550px ;
+
+  margin-right: 25%;
+}
+
+hand > card {
+  position: absolute;
+  top: -150%;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+
+  width: 100%;
+  height: 100%;
+
+  outline: 3px solid rgb(62, 62, 62);
+
+  background-color: white;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  transition: top ease-out 0.5s,
+              left ease-in-out 0.3s,
+              transform ease-in-out 0.5s;
+}
+
+hand > card > .header {
+  margin: 1.5rem 1.5rem 1rem 1.5rem;
+
+  border-bottom: 2px solid black;
+  background-color: inherit;
+}
+
+hand > card > .content {
+  margin: 1rem 1.5rem 1.5rem 1.5rem;
+}
+
+hand > card .content > p {
+  margin: 1rem 0;
+  line-height: 140%;
+}
+
+hand > card > .content > ul {
+  padding-left: 1.5rem;
+}
+
+hand > card > .content > ul > li {
+  margin: 0.4rem 0;
+}
+
+hand > card > .content > img {
+  display: block;
+  margin: 0 auto;
+}
+
+hand > card.inactive {
+  cursor: pointer;
+  overflow-y: hidden;
+}
+
+hand > card.inactive:hover {
+  outline-style: dashed;
+}
+
+.repo-link {
+  border: none;
+  float: right;
+}
+
+#ProjectList {
+  margin-top: auto;
+  list-style: none;
+  padding: 0;
+}
+
+#ProjectList > item > p {
+  margin-left: 1rem;
+}
+
+/***********\
+ *  Index  *
+\***********/
+
+index {
+  margin-right: 10%;
+
+  display: flex;
+  flex-flow: column;
+  flex-direction: column;
+  align-items: flex-end;
+  flex-grow: 1;
+
+  z-index: 24;
+}
+
+guide {
+  min-width: 10rem;
+
+  display: flex;
+  flex-direction: column;
+  flex-flow: column;
+  flex-grow: 1;
+
+  z-index: 24;
+}
+
+guide > item {
+  position: relative;
+  top: 0px;
+
+  margin: 0.5rem 0;
+
+  flex-grow: 0;
+  align-self: flex-end;
+
+  transition: flex-grow 0.5s;
+}
+
+guide > item > span {
+  font-weight: normal;
+  padding: 0.5rem;
+  background-color: inherit;
+  transition: all 0.3s;
+}
+
+guide > item.active {
+  flex-grow: 1;
+  align-self: flex-end;
+}
+
+guide > item.preview > span {
+  transition: none;
+}
+
+guide > item.preview > span,
+guide > item.active > span {
+  padding: 0.5rem;
+  border-radius: 10%;
+  background-color: lightgray;
+}
+
+guide > item.active > span {
+  font-weight: bold;
+}
+
+guide > item:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+guide > item.active:hover {
+  text-decoration: none;
+}
+
+#E {
+  position: relative;
+
+  min-width: 4rem;
+  min-height: 4rem;
+  max-width: 4rem;
+  max-height: 4rem;
+
+  margin-bottom: 1rem;
+
+  border: none;
+
+  transition: all ease 0.5s;
+}
+
+#E:hover > div {
+  border-radius: 0;
+  background-color: orange;
+
+  left: 10%;
+}
+
+#E > div {
+  position: absolute;
+
+  width: inherit;
+  height: inherit;
+
+  transition: all 0.3s;
+  transition-timing-function: ease;
+
+  background-color: black;
+}
+
+#E_Spine {
+  height: 100% !important;
+  width: 15% !important;
+
+  left: 15%;
+}
+
+#E_mid {
+  width: 45% !important;
+  height: 15% !important;
+
+  top: 42.5%;
+  left: 15%;
+}
+
+#E_top {
+  width: 80% !important;
+  height: 15% !important;
+
+  left: 5%;
+}
+
+#E_bottom {
+  width: 80% !important;
+  height: 15% !important;
+
+  top: 85%;
+  left: 5%;
+}
+
+#E_slabT {
+  width: 15% !important;
+  height: 30% !important;
+
+  left: 70%;
+}
+
+#E_slabB {
+  width: 15% !important;
+  height: 30% !important;
+
+  left: 70%;
+  top: 70%;
+}
+
+#E:hover > #E_Spine {
+}
+
+#E:hover > #E_mid {
+  width: 50% !important;
+}
+
+#E:hover > #E_top {
+  width: 60% !important;
+}
+
+#E:hover > #E_bottom {
+  width: 60% !important;
+}
+@media screen and (max-width: 600px) {
+  body {
+    flex-flow: column;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+  }
+
+  html {
+    font-size: 80%;
+  }
+
+  index {
+    height: 5rem;
+    width: 100%;
+
+    top: 0;
+
+    background: linear-gradient( white 90%, #00000000 100% );
+
+    flex-direction: row;
+    flex-flow: row;
+    flex-grow: 0;
+
+    justify-content: center;
+    align-items: center;
+
+    margin: 0rem;
+    padding: 1rem 1rem;
+  }
+
+  #E {
+    width: 3rem;
+    height: 3rem;
+
+    margin: 0;
+
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    margin-right: 0.5rem;
+  }
+
+  guide {
+    flex-direction: row;
+    flex-flow: row;
+    flex-wrap: wrap;
+    height: 100%;
+  }
+
+  guide > item {
+    padding: 0;
+    margin: 0.2rem;
+  }
+
+  guide > item.active,
+  guide > item:hover {
+    font-weight: normal;
+    flex-grow: 0;
+  }
+
+  hand {
+    flex-grow: 1;
+    margin: 0;
+  }
+
+  buffer {
+    height: 0px;
+    margin-top: -10%;
+    flex-shrink: 1;
+  }
+}
