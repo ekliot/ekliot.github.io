@@ -157,6 +157,8 @@ class Board
     # Deck
     @active = null
 
+    @title = "Elijah Kliot"
+
     # scroll control
     @scroll_stamp = new Date().getTime()
     @scroll_buff = 0
@@ -201,10 +203,10 @@ class Board
 
     # set listeners for anchors
     for anchor in document.querySelectorAll "a.local"
-      anchor.onclick = (ev) =>
-        @parse_href ev.target.href
+      anchor.addEventListener 'click', ((ev) =>
+        @parse_href ev.target.href), false
 
-    @logo.onclick = () => @set_active 'root'
+    @logo.addEventListener 'click', ((ev) => @parse_href @logo.href)
 
   #
   # SETUP
@@ -360,11 +362,16 @@ class Board
 
   parse_href: ( href ) ->
     ref = href.split( '#' )[1]
-    deck_div = document.getElementById href.split( '#' )[1].split( '_' )[0]
+    deck_title = ref.split( '_' )[0]
+
+    deck_div = document.getElementById deck_title
     deck_obj = @decks[deck_div.dataset.title]
+
     if deck_obj?
       c_ref = document.getElementById ref
       idx = c_ref.dataset.idx
+      title = deck_div.id
+      document.title = @title + if title is 'Root' then '' else " // #{title}"
       if deck_obj is @active
         @go_to idx
       else

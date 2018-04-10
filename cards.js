@@ -218,6 +218,7 @@
       this.decks = {};
       // Deck
       this.active = null;
+      this.title = "Elijah Kliot";
       // scroll control
       this.scroll_stamp = new Date().getTime();
       this.scroll_buff = 0;
@@ -271,13 +272,13 @@
       // set listeners for anchors
       for (k = 0, len1 = ref2.length; k < len1; k++) {
         anchor = ref2[k];
-        anchor.onclick = (ev) => {
+        anchor.addEventListener('click', ((ev) => {
           return this.parse_href(ev.target.href);
-        };
+        }), false);
       }
-      return this.logo.onclick = () => {
-        return this.set_active('root');
-      };
+      return this.logo.addEventListener('click', ((ev) => {
+        return this.parse_href(this.logo.href);
+      }));
     }
 
     
@@ -455,13 +456,16 @@
     }
 
     parse_href(href) {
-      var c_ref, deck_div, deck_obj, idx, ref;
+      var c_ref, deck_div, deck_obj, deck_title, idx, ref, title;
       ref = href.split('#')[1];
-      deck_div = document.getElementById(href.split('#')[1].split('_')[0]);
+      deck_title = ref.split('_')[0];
+      deck_div = document.getElementById(deck_title);
       deck_obj = this.decks[deck_div.dataset.title];
       if (deck_obj != null) {
         c_ref = document.getElementById(ref);
         idx = c_ref.dataset.idx;
+        title = deck_div.id;
+        document.title = this.title + (title === 'Root' ? '' : ` // ${title}`);
         if (deck_obj === this.active) {
           return this.go_to(idx);
         } else {
