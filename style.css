@@ -69,6 +69,8 @@ hand {
   max-height: 550px ;
 
   margin-right: 25%;
+
+  touch-action: none;
 }
 
 hand > card {
@@ -91,8 +93,6 @@ hand > card {
   transition: top ease-out 0.5s,
               left ease-in-out 0.3s,
               transform ease-in-out 0.5s;
-
-  touch-action: none;
 }
 
 hand > card > .header {

@@ -333,6 +333,7 @@ class Board
     # we only care about swiping up or down
     if Math.abs( dy ) > Math.abs( dx )
       if dy > 0
+        ev.preventDefault()
         @active.next_card()
       else
         @active.last_card()
