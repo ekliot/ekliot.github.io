@@ -24,7 +24,6 @@
 
     swipe(dir = 'up') {
       var div, rem, rot, top;
-      console.log(dir);
       rem = parseFloat(getComputedStyle(document.documentElement).fontSize);
       div = this.get_div();
       top = dir === 'up' ? -120 : 120;
@@ -94,25 +93,24 @@
       }
       last = this.active;
       this.active = idx;
-      console.log(dir);
       // dumb ifelse monstrosity...
 
       // if we are scrolling backwards...
       if (last > this.active) {
-        console.log(1);
+        // console.log 1
         for (i = j = ref1 = last, ref2 = this.size; ref1 <= ref2 ? j < ref2 : j > ref2; i = ref1 <= ref2 ? ++j : --j) {
           this.deck[i].swipe(dir === 'def' ? 'up' : dir);
         }
         // and, if the next active card is not the first card...
         if (this.active !== 0) {
-          console.log(2);
+          // console.log 2
           for (i = k = 0, ref3 = this.active; 0 <= ref3 ? k < ref3 : k > ref3; i = 0 <= ref3 ? ++k : --k) {
             this.deck[i].swipe(dir === 'def' ? 'up' : dir);
           }
         }
       } else {
+        // console.log 3
         // otherwise
-        console.log(3);
         for (i = l = ref4 = last, ref5 = this.active; ref4 <= ref5 ? l < ref5 : l > ref5; i = ref4 <= ref5 ? ++l : --l) {
           this.deck[i].swipe(dir === 'def' ? 'up' : dir);
         }
@@ -273,7 +271,7 @@
         };
         // TODO touch listeners
         card.addEventListener('touchstart', this.handle_touch_down, false);
-        card.addEventListener('touchend', this.handle_touch_up, false);
+        card.addEventListener('touchmove', this.handle_touch_up, false);
       }
       ref2 = document.querySelectorAll("a.local");
       // set listeners for anchors
@@ -387,7 +385,6 @@
       for (i = k = 0, len1 = ref2.length; k < len1; i = ++k) {
         item = ref2[i];
         results.push(item.addEventListener('click', ((ev) => {
-          console.log(new Date().getTime());
           item = ev.target.parentNode;
           return this.go_to(item.dataset.idx);
         }), false));
@@ -396,16 +393,30 @@
     }
 
     handle_touch_up(ev) {
-      var dx, dy, up_x, up_y;
+      var dt, dx, dy, now, up_x, up_y;
       if (!this.touch_x || !this.touch_y) {
         return;
       }
-      console.log(`last touch at (${this.touch_x}, ${this.touch_y})`);
-      console.log(ev);
-      up_x = ev.changedTouches[0].clientX;
-      up_y = ev.changedTouches[0].clientY;
+      // console.log "last touch at (#{@touch_x}, #{@touch_y})"
+
+      // console.log ev
+      up_x = ev.touches[0].clientX;
+      up_y = ev.touches[0].clientY;
+      // up_x = ev.changedTouches[0].clientX
+      // up_y = ev.changedTouches[0].clientY
       dx = this.touch_x - up_x;
       dy = this.touch_y - up_y;
+      now = new Date().getTime();
+      dt = now - this.scroll_stamp;
+      if (Math.abs(dy) < 100) {
+        return;
+      }
+      if (dt < this.scroll_delay) {
+        return;
+      }
+      this.scroll_stamp = now;
+      this.touch_x = up_x;
+      this.touch_y = up_y;
       // we only care about swiping up or down
       if (Math.abs(dy) > Math.abs(dx)) {
         if (dy > 0) {
@@ -419,9 +430,7 @@
 
     handle_touch_down(ev) {
       this.touch_x = ev.touches[0].clientX;
-      this.touch_y = ev.touches[0].clientY;
-      console.log(ev.touches);
-      return console.log(`touchdown at (${this.touch_x}, ${this.touch_y})`);
+      return this.touch_y = ev.touches[0].clientY;
     }
 
     // set the idx elements to match the active deck configuration
@@ -453,20 +462,22 @@
       var dt, now;
       now = new Date().getTime();
       dt = now - this.scroll_stamp;
-      if (dt >= this.scroll_delay) {
-        this.scroll_buff += (ev.deltaY < 0 ? -1 : 1);
-        if (this.scroll_thresh < Math.abs(this.scroll_buff)) {
-          // up or down?
-          if (this.scroll_buff > 0) {
-            this.active.next_card();
-          } else {
-            this.active.last_card();
-          }
-          // update the index to match the current selection
-          this.update_guide();
-          return this.scroll_lock();
-        }
+      if (dt < this.scroll_delay) {
+        return;
       }
+      this.scroll_buff += (ev.deltaY < 0 ? -1 : 1);
+      if (this.scroll_thresh >= Math.abs(this.scroll_buff)) {
+        return;
+      }
+      // up or down?
+      if (this.scroll_buff > 0) {
+        this.active.next_card();
+      } else {
+        this.active.last_card();
+      }
+      // update the index to match the current selection
+      this.update_guide();
+      return this.scroll_lock();
     }
 
     scroll_lock(mult = 1) {

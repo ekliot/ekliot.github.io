@@ -17,8 +17,6 @@ class Card
   #
 
   swipe: ( dir='up' ) ->
-
-    console.log dir
     rem = parseFloat getComputedStyle( document.documentElement ).fontSize
     div = @get_div()
     top = if dir is 'up' then -120 else 120
@@ -74,23 +72,21 @@ class Deck
     last = @active
     @active = idx
 
-    console.log dir
-
     # dumb ifelse monstrosity...
 
     # if we are scrolling backwards...
     if last > @active
-      console.log 1
+      # console.log 1
       for i in [last...@size]
         @deck[i].swipe( if dir is 'def' then 'up' else dir )
       # and, if the next active card is not the first card...
       if @active != 0
-        console.log 2
+        # console.log 2
         for i in [0...@active]
           @deck[i].swipe( if dir is 'def' then 'up' else dir )
     # otherwise
     else
-      console.log 3
+      # console.log 3
       for i in [last...@active]
         @deck[i].swipe( if dir is 'def' then 'up' else dir )
 
@@ -209,7 +205,7 @@ class Board
 
       # TODO touch listeners
       card.addEventListener 'touchstart', @handle_touch_down, false
-      card.addEventListener 'touchend', @handle_touch_up, false
+      card.addEventListener 'touchmove', @handle_touch_up, false
 
     # set listeners for anchors
     for anchor in document.querySelectorAll "a.local"
@@ -292,7 +288,6 @@ class Board
 
     for item, i in document.querySelectorAll 'item > span'
       item.addEventListener 'click', ((ev) =>
-        console.log new Date().getTime()
         item = ev.target.parentNode
         @go_to item.dataset.idx
       ), false
@@ -312,15 +307,28 @@ class Board
   handle_touch_up: (ev) =>
     if (!@touch_x or !@touch_y) then return
 
-    console.log "last touch at (#{@touch_x}, #{@touch_y})"
+    # console.log "last touch at (#{@touch_x}, #{@touch_y})"
+    #
+    # console.log ev
 
-    console.log ev
-
-    up_x = ev.changedTouches[0].clientX
-    up_y = ev.changedTouches[0].clientY
+    up_x = ev.touches[0].clientX
+    up_y = ev.touches[0].clientY
+    # up_x = ev.changedTouches[0].clientX
+    # up_y = ev.changedTouches[0].clientY
 
     dx = @touch_x - up_x
     dy = @touch_y - up_y
+
+    now = new Date().getTime()
+    dt = now - @scroll_stamp
+
+    if Math.abs( dy ) < 100 then return
+    if dt < @scroll_delay then return
+
+    @scroll_stamp = now
+
+    @touch_x = up_x
+    @touch_y = up_y
 
     # we only care about swiping up or down
     if Math.abs( dy ) > Math.abs( dx )
@@ -334,9 +342,6 @@ class Board
   handle_touch_down: (ev) =>
     @touch_x = ev.touches[0].clientX
     @touch_y = ev.touches[0].clientY
-    console.log ev.touches
-
-    console.log "touchdown at (#{@touch_x}, #{@touch_y})"
 
   # set the idx elements to match the active deck configuration
   update_guide: () ->
@@ -366,19 +371,21 @@ class Board
     now = new Date().getTime()
     dt = now - @scroll_stamp
 
-    if dt >= @scroll_delay
-      @scroll_buff += (if ev.deltaY < 0 then -1 else 1)
+    if dt < @scroll_delay then return
 
-      if @scroll_thresh < Math.abs @scroll_buff
-        # up or down?
-        if @scroll_buff > 0
-          @active.next_card()
-        else
-          @active.last_card()
+    @scroll_buff += (if ev.deltaY < 0 then -1 else 1)
 
-        # update the index to match the current selection
-        @update_guide()
-        @scroll_lock()
+    if @scroll_thresh >= Math.abs( @scroll_buff ) then return
+
+    # up or down?
+    if @scroll_buff > 0
+      @active.next_card()
+    else
+      @active.last_card()
+
+    # update the index to match the current selection
+    @update_guide()
+    @scroll_lock()
 
   # reset the scroll buffer and timestamp
   scroll_lock: ( mult=1 ) =>
