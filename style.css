@@ -121,7 +121,8 @@ hand > card > .content > ul > li {
 
 hand > card > .content > img {
   display: block;
-  margin: 0 auto;
+  max-width: 90%;
+  margin: 1rem auto;
 }
 
 hand > card.inactive {

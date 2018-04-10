@@ -306,6 +306,7 @@ class Board
 
   handle_touch_up: (ev) =>
     if (!@touch_x or !@touch_y) then return
+    ev.preventDefault()
 
     # console.log "last touch at (#{@touch_x}, #{@touch_y})"
     #
@@ -333,7 +334,6 @@ class Board
     # we only care about swiping up or down
     if Math.abs( dy ) > Math.abs( dx )
       if dy > 0
-        ev.preventDefault()
         @active.next_card()
       else
         @active.last_card()
