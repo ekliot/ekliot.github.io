@@ -20,7 +20,7 @@ body {
   margin: 0;
   padding: 0;
 
-  font-family: 'Cantarell', sans-serif;
+  font-family: 'IBM Plex Sans', sans-serif;
 }
 
 a {
@@ -105,7 +105,7 @@ hand > card > .content {
 
 hand > card .content > p {
   margin: 1rem 0;
-  line-height: 140%;
+  line-height: 150%;
 }
 
 hand > card > .content > ul {
