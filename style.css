@@ -365,11 +365,11 @@ guide > item.active:hover {
     width: 3rem;
     height: 3rem;
 
-    margin: 0;
+    margin: 0.5rem;
 
-    margin-top: 0.5rem;
+    /* margin-top: 0.5rem;
     margin-bottom: 0.5rem;
-    margin-right: 5%;
+    margin-right: 0.5rem; */
   }
 
   guide {
