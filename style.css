@@ -313,6 +313,7 @@ guide > item.active:hover {
 #E:hover > #E_bottom {
   width: 60% !important;
 }
+
 @media screen and (max-width: 600px) {
   body {
     flex-flow: column;
@@ -345,7 +346,7 @@ guide > item.active:hover {
     align-items: center;
 
     margin: 0rem;
-    margin-bottom: 5%;
+    margin-bottom: 7%;
     padding: 1rem 5%;
   }
 
@@ -389,5 +390,11 @@ guide > item.active:hover {
     height: 0px;
     /* margin-top: -0%; */
     flex-shrink: 1;
+  }
+}
+
+@media screen and (max-height: 500px) {
+  index {
+    margin-bottom: -0.5rem;
   }
 }
