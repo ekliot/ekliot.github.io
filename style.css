@@ -339,7 +339,11 @@ guide > item.active:hover {
 
     top: 0;
 
-    background: linear-gradient( white 90%, #00000000 100% );
+    background:         linear-gradient( white 90%, #00000000 100% );
+    background:      -o-linear-gradient( white 90%, #00000000 100% ); /* Opera 11.10 */  
+    background:     -ms-linear-gradient( white 90%, #00000000 100% ); /* IE10 */
+    background:    -moz-linear-gradient( white 90%, #00000000 100% ); /* FF 3.6+ */
+    background: -webkit-linear-gradient( white 90%, #00000000 100% ); /* Safari 5.1+, Chrome 10+ */
 
     flex-direction: row;
     flex-flow: row;
