@@ -325,8 +325,12 @@ guide > item.active:hover {
     font-size: 80%;
   }
 
+  hand {
+    /* align-self: stretch; */
+  }
+
   index {
-    height: 5rem;
+    min-height: 5rem;
     width: 100%;
 
     top: 0;
@@ -341,7 +345,8 @@ guide > item.active:hover {
     align-items: center;
 
     margin: 0rem;
-    padding: 1rem 1rem;
+    margin-bottom: 5%;
+    padding: 1rem 5%;
   }
 
   #E {
@@ -352,7 +357,7 @@ guide > item.active:hover {
 
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
-    margin-right: 0.5rem;
+    margin-right: 5%;
   }
 
   guide {
@@ -360,6 +365,7 @@ guide > item.active:hover {
     flex-flow: row;
     flex-wrap: wrap;
     height: 100%;
+    padding: 0.5rem;
   }
 
   guide > item {
@@ -379,8 +385,9 @@ guide > item.active:hover {
   }
 
   buffer {
+    /* display: none; */
     height: 0px;
-    margin-top: -10%;
+    /* margin-top: -0%; */
     flex-shrink: 1;
   }
 }
