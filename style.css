@@ -192,11 +192,13 @@ guide > item {
 
   flex-grow: 0;
   align-self: flex-end;
+  /* align-self: flex-end; */
 
   transition: flex-grow 0.5s;
 }
 
 guide > item > span {
+  text-align: right;
   font-weight: normal;
   padding: 0.5rem;
   background-color: inherit;
