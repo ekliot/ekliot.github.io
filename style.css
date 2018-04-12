@@ -137,6 +137,13 @@ hand > card.inactive:hover {
 .repo-link {
   border: none;
   float: right;
+  width: 2rem;
+  height: 2rem;
+}
+
+.repo-link > svg {
+  width: 2rem;
+  height: 2rem;
 }
 
 #ProjectList {
