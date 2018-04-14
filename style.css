@@ -188,7 +188,7 @@ guide > item {
   position: relative;
   top: 0px;
 
-  margin: 0.5rem 0;
+  margin: 1rem 0;
 
   flex-grow: 0;
   align-self: flex-end;
@@ -237,10 +237,8 @@ guide > item.active:hover {
 #E {
   position: relative;
 
-  min-width: 4rem;
-  min-height: 4rem;
-  max-width: 4rem;
-  max-height: 4rem;
+  width: 4rem;
+  height: 4rem;
 
   margin-bottom: 1rem;
 
@@ -259,9 +257,6 @@ guide > item.active:hover {
 #E > div {
   position: absolute;
 
-  width: inherit;
-  height: inherit;
-
   transition: all 0.3s;
   transition-timing-function: ease;
 
@@ -269,45 +264,45 @@ guide > item.active:hover {
 }
 
 #E_Spine {
-  height: 100% !important;
-  width: 15% !important;
+  height: 100%;
+  width: 15%;
 
   left: 15%;
 }
 
 #E_mid {
-  width: 45% !important;
-  height: 15% !important;
+  width: 45%;
+  height: 15%;
 
   top: 42.5%;
   left: 15%;
 }
 
 #E_top {
-  width: 80% !important;
-  height: 15% !important;
+  width: 80%;
+  height: 15%;
 
   left: 5%;
 }
 
 #E_bottom {
-  width: 80% !important;
-  height: 15% !important;
+  width: 80%;
+  height: 15%;
 
-  top: 85%;
+  bottom: 0%;
   left: 5%;
 }
 
 #E_slabT {
-  width: 15% !important;
-  height: 30% !important;
+  width: 15%;
+  height: 30%;
 
   left: 70%;
 }
 
 #E_slabB {
-  width: 15% !important;
-  height: 30% !important;
+  width: 15%;
+  height: 30%;
 
   left: 70%;
   top: 70%;
@@ -317,15 +312,15 @@ guide > item.active:hover {
 }
 
 #E:hover > #E_mid {
-  width: 50% !important;
+  width: 50%;
 }
 
 #E:hover > #E_top {
-  width: 60% !important;
+  width: 60%;
 }
 
 #E:hover > #E_bottom {
-  width: 60% !important;
+  width: 60%;
 }
 
 @media screen and (max-width: 600px) {
