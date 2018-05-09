@@ -230,6 +230,51 @@
                             <img src="assets/images/ray-tracer/chkpt6_img2.png"></img>
                         </div>
                     </card>
+                    <card id="RayTracer_Check7" data-title="Check 7">
+                        <div class="header">
+                            <h2>Checkpoint 7</h2>
+                            <h4 style="margin-top: -0.5rem;">Tone Reproduction</h2>
+                        </div>
+                        <div class="content">
+                            <h4>Reinhard Method</h4>
+                            <img src="assets/images/ray-tracer/chkpt7_img1.png"></img>
+                            <h4>Ward method with Lmax = 1 nit</h4>
+                            <img src="assets/images/ray-tracer/chkpt7_img2.png"></img>
+                            <h4>Ward method with Lmax = 1000 nit</h4>
+                            <img src="assets/images/ray-tracer/chkpt7_img3.png"></img>
+                            <h4>Ward method with Lmax = 10000 nit</h4>
+                            <img src="assets/images/ray-tracer/chkpt7_img4.png"></img>
+                        </div>
+                    </card>
+                    <card id="RayTracer_KD" data-title="k-d Tree">
+                        <div class="header">
+                            <h2>k-d Tree</h2>
+                        </div>
+                        <div class="content">
+                            <h4>Standford bunny</h4>
+                            <ul>
+                                <li>k-d tree build time: 4.30769 sec</li>
+                                <li>Render duration with k-d tree: 6.16883 sec</li>
+                                <li>Render duration without k-d tree: too long</li>
+                            </ul>
+                            <img src="assets/images/ray-tracer/bunny.png"></img>
+                        </div>
+                    </card>
+                    <card id="RayTracer_Photons" data-title="Photon Mapping">
+                        <div class="header">
+                            <h2>Photon Mapping</h2>
+                        </div>
+                        <div class="content">
+                            <h4>1000 Photons, 100 photon estimate, 11 sec build and render</h4>
+                            <img src="assets/images/ray-tracer/pm_1000_100_11.png"></img>
+                            <h4>10000 Photons, 100 photon estimate, 162 sec build and render</h4>
+                            <img src="assets/images/ray-tracer/pm_10000_100_162.png"></img>
+                            <h4>100000 Photons, 100 photon estimate, 2638 sec build and render</h4>
+                            <img src="assets/images/ray-tracer/pm_100000_100_2638.png"></img>
+                            <!-- <h4>100000 Photons, 200 photon estimate, </h4>
+                            <img src="assets/images/ray-tracer/bunny.png"></img> -->
+                        </div>
+                    </card>
                 </deck>
             </div>
             <hand></hand>
