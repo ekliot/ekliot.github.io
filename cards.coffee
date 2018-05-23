@@ -442,6 +442,10 @@ window.onload = () ->
   diglit_div = document.getElementById 'DigitalLiterature'
   diglit_deck = new Deck "diglit", diglit_div
 
+  # Ravenmasker deck
+  ravenmasker_div = document.getElementById 'Ravenmasker'
+  ravenmasker_deck = new Deck "ravenmasker", ravenmasker_div
+
   # make the board
   board = new Board hand, idx
 
@@ -449,6 +453,7 @@ window.onload = () ->
   board.add_deck root_deck
   board.add_deck raytrace_deck
   board.add_deck diglit_deck
+  board.add_deck ravenmasker_deck
   # TODO add more decks
 
   # initialize the Board

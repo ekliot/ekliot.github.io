@@ -525,7 +525,7 @@
   };
 
   window.onload = function() {
-    var board, diglit_deck, diglit_div, hand, href, idx, mail, name, raytrace_deck, raytrace_div, root_deck, root_div, url;
+    var board, diglit_deck, diglit_div, hand, href, idx, mail, name, ravenmasker_deck, ravenmasker_div, raytrace_deck, raytrace_div, root_deck, root_div, url;
     // make base elements for the board
     hand = document.querySelector('hand');
     idx = document.querySelector('index');
@@ -538,12 +538,16 @@
     // DigitalLiterature deck
     diglit_div = document.getElementById('DigitalLiterature');
     diglit_deck = new Deck("diglit", diglit_div);
+    // Ravenmasker deck
+    ravenmasker_div = document.getElementById('Ravenmasker');
+    ravenmasker_deck = new Deck("ravenmasker", ravenmasker_div);
     // make the board
     board = new Board(hand, idx);
     // add the root deck
     board.add_deck(root_deck);
     board.add_deck(raytrace_deck);
     board.add_deck(diglit_deck);
+    board.add_deck(ravenmasker_deck);
     // TODO add more decks
 
     // initialize the Board
