@@ -123,7 +123,7 @@
                             <h4 style="margin-top: -0.5rem;">By Dylan Smith, Aaron Collins, and Elijah Kliot</h2>
                         </div>
                         <div class="content">
-                            <img src="assets/images/diglit/drawn_fates/screencap.png" style="border: 1px solid black"></img>
+                            <a target="_blank" href="https://www.ekliot.com/drawn_fates/"><img src="assets/images/diglit/drawn_fates/screencap.png" style="border: 1px solid black"></img></a>
                             <p>Combinatoric storytelling using tarot cards, as a capstone project for the Digital Creative Writing Workshop at RIT.</p>
                             <p>This was a group writing project, where we chose to each write the perspective of a student in a small-town high-school caught up in a supernatural plot.</p>
                             <p>I wrote the journals for Asher, while Dylan Smith wrote for Gustave and Aaron Collins wrote for Cedrick.</p>
@@ -142,7 +142,7 @@
                             </h2>
                             </div>
                         <div class="content">
-                            <img src="assets/images/diglit/reflections/screencap.png" style="border: 1px solid black"></img>
+                            <a target="_blank" href="https://www.ekliot.com/reflections-of-grandeur/"><img src="assets/images/diglit/reflections/screencap.png" style="border: 1px solid black"></img></a>
                             <p>A stream of consciousness hypertext fiction on inspiration, ownership, and imposterhood.</p>
                         </div>
                     </card>
@@ -246,7 +246,7 @@
                                     <svg viewBox="0 0 30 30" aria-labelledby="brsi-evil-sc-github-title" style="width:2rem;height:2rem">
                                         <path fill-rule="evenodd" d="M15 0C6.7 0 0 6.7 0 15c0 6.6 4.3 12.2 10.3 14.2.8.1 1-.3 1-.7v-2.6c-4.2.9-5.1-2-5.1-2-.7-1.7-1.7-2.2-1.7-2.2-1.4-.9.1-.9.1-.9 1.5.1 2.3 1.5 2.3 1.5 1.3 2.3 3.5 1.6 4.4 1.2.1-1 .5-1.6 1-2-3.3-.4-6.8-1.7-6.8-7.4 0-1.6.6-3 1.5-4-.2-.4-.7-1.9.1-4 0 0 1.3-.4 4.1 1.5 1.2-.3 2.5-.5 3.8-.5 1.3 0 2.6.2 3.8.5 2.9-1.9 4.1-1.5 4.1-1.5.8 2.1.3 3.6.1 4 1 1 1.5 2.4 1.5 4 0 5.8-3.5 7-6.8 7.4.5.5 1 1.4 1 2.8v4.1c0 .4.3.9 1 .7 6-2 10.2-7.6 10.2-14.2C30 6.7 23.3 0 15 0z" clip-rule="evenodd"></path>
                                     </svg></a>
-                                </h2>
+                            </h2>
                             <h4 style="margin-top: -0.5rem;">Twitter-centric Steganography</h2>
                         </div>
                         <div class="content">
@@ -255,9 +255,39 @@
                             <p>The solution is described ahead, and sample tweets can be found <a href="https://twitter.com/ravenmasker">@ravenmasker</a>.</p>
                         </div>
                     </card>
-                    <card id="Ravenmasker_Design" data-title"Design">
+                    <card id="Ravenmasker_Twitter" data-title="Designing for Twitter">
                         <div class="header">
-                            <h2>Design</h2>
+                            <h2>Getting around Twitter's image compression</h2>
+                        </div>
+                        <div class="content">
+                            <p>Because Twitter corrupts images uploaded to its platform, we need to get around that somehow.</p>
+                            <p>The answer lies in PNGs and transparency -- in order to preserve transparency in images, Twitter will respectfully avoid compressing PNGs, so long as they contain at least one transparent pixel.</p>
+                            <p>This gives us a baseline to work with: encrypted images are of the PNG format, and they must have at least one transparent pixel.</p>
+
+                        </div>
+                    </card>
+                    <card id="Ravenmasker_Domain" data-title="Encryption Domain">
+                        <div class="header">
+                            <h2>Image and message domains</h2>
+                        </div>
+                        <div class="content">
+                            <p>This led to the thought, perhaps the alpha channels (the transparencies) of each pixel could serve as a domain for mapping a message.</p>
+                            <p>Principally, each pixel has 256 values (8 bits) for the alpha channel of each pixel. Each ASCII character is 7 bits, meaning each ASCII character can fit into a single pixel's transparency layer.</p>
+                            <p>We're now working with a few assumptions for our domain: the image will be a PNG, and the message to encrypt will be in ASCII format. Suggestions for expanding this to other character sets is explored later.</p>
+                        </div>
+                    </card>
+                    <card id="Ravenmasker_PxChar" data-title="Pixels and Characters">
+                        <div class="header">
+                            <h2>Storing a character into a pixel</h2>
+                        </div>
+                        <div class="content">
+                            <p>Storing an ASCII character into a pixel is simple: take the pixel's alpha value (assuming an opaque pixel with an alpha of 255), and subtract the character's ASCII value.</p>
+                            <p>Getting the character back from the pixel (again, assuming the pixel was originally opaque) is straightforward: subtract the current alpha from 255, and convert that to an ASCII character.</p>
+                        </div>
+                    </card>
+                    <card id="Ravenmasker_DesignA" data-title="Design // A">
+                        <div class="header">
+                            <h2>A</h2>
                         </div>
                         <div class="content">
                         </div>
